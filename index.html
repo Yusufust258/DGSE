@@ -10,7 +10,7 @@
       --frame-h: 300px;
       --card-border-radius: 18px; /* Kartın kenar yuvarlaklığı */
       --image-size: 55px; /* Resimlerin boyutu */
-      --edge-offset: 10px; /* Resimlerin kartın dışına taşma miktarı (bu, görseldeki çizginin uzaklığına göre ayarlanabilir) */
+      --edge-offset: 0px; /* RESİMLERİN KARTIN DIŞINA TAŞMA MİKTARI: Kutuya yanaşması için 0px yaptık */
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{
@@ -94,35 +94,32 @@
     .b3{bottom:-30px;left:calc(50% - 20px);}
     .b4{bottom:-30px;left:calc(50% + 45px);}
 
-    /* Sağ resimler (2 tane) - Köşe yuvarlaklığını takip edecek şekilde */
-    /* Resmin merkezinin, kartın köşesinin yuvarlaklığını takip etmesi için matematiksel hesaplama. */
-    /* Resimlerin kartın dışına ne kadar taşması gerektiğini 'edge-offset' belirliyor. */
-
+    /* Sağ resimler (2 tane) - Kutuya Yakınlaştırıldı */
     /* Sağ üst köşe */
     .r1{
       right: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
       top: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+      transform: rotate(25deg);
     } 
     /* Sağ alt köşe */
     .r2{
       right: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
       bottom: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(-25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+      transform: rotate(-25deg);
     }
     
-    /* Sol resimler (2 tane) - Köşe yuvarlaklığını takip edecek şekilde */
+    /* Sol resimler (2 tane) - Kutuya Yakınlaştırıldı */
     /* Sol üst köşe */
     .l1{
       left: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
       top: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(-25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+      transform: rotate(-25deg);
     }
     /* Sol alt köşe */
     .l2{
       left: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
       bottom: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+      transform: rotate(25deg);
     }
 
     /* Balonlar */
