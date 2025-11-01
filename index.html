@@ -79,12 +79,13 @@
     .bottom-left { bottom: 10px; left: 10px; }
     .bottom-right { bottom: 10px; right: 10px; }
 
-    /* 5. görsel üst ortada ama biraz aşağıda */
-    .top-center {
-      top: 100px; /* Ortadaki görsel aşağıya çekildi */
-      left: 50%;
-      transform: translateX(-50%);
+    /* Yeni alt ortadaki görsel */
+    .bottom-center {
+     bottom: 100px; /* Alttan mesafe */
+     left: 50%;
+     transform: translateX(-50%);
     }
+
 
     @media (max-width: 600px) {
       h1 { font-size: 1.6em; }
