@@ -8,7 +8,8 @@
     :root{
       --frame-w: 340px;
       --frame-h: 300px;
-      --card-padding: 15px; /* Kartın içindeki boşluk */
+      --card-padding: 15px;
+      --edge-offset: -25px; /* Sağ/sol resimlerin karttan ne kadar dışarıda olacağı */
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{
@@ -81,7 +82,6 @@
     }
 
     /* Üst resimler (4 tane) */
-    /* Resimler arasındaki yaklaşık aralık 20px */
     .t1{top:-30px;left:calc(50% - 150px);}
     .t2{top:-30px;left:calc(50% - 85px);}
     .t3{top:-30px;left:calc(50% - 20px);}
@@ -93,32 +93,20 @@
     .b3{bottom:-30px;left:calc(50% - 20px);}
     .b4{bottom:-30px;left:calc(50% + 45px);}
 
-    /* Sağ resimler (2 tane) - Metin kutusunun köşelerine hizalı ve dışarıda */
-    /* Hesaplamalar:
-       - Kartın toplam genişliği: 340px
-       - Kartın sol/sağ paddingi: 15px
-       - Metin alanı genişliği: 340 - (2 * 15) = 310px
-       - Resim genişliği: 55px
-       
-       Üstteki resim: Kartın üst paddingi (15px) + H1 (18px) + Meta (13px) + 4px (h1 margin-bottom) + 6px (meta margin-bottom)
-         top: 15 + 18 + 4 + 13 + 6 = 56px (yaklaşık olarak mesaj kutusunun üst başlangıcı)
-         Resmin kendi yüksekliği 55px olduğu için, bu 'top' değeri resmin üst kenarını mesaj kutusunun üst kenarına hizalar.
-       
-       Alttaki resim: Metin alanı yüksekliği + yukarıdaki elemanların toplam yüksekliği.
-         Kartın toplam yüksekliği: 300px
-         Kartın alt paddingi: 15px
-         Button yüksekliği + margin: 12px (bottom) + 8px (btn padding-top) + 14px (btn padding-bottom) + 18px (btn border-radius) = ~52px
-         Mesaj kutusu max-height: 180px (scrollbar olursa düşer, ama genelde bu değer kullanılır)
-         Metin alanının alt köşesi: Kartın yüksekliği (300) - Alt padding (15) - Button yüksekliği (~50) = ~235px
-         Resmin alt kenarının bu hizaya gelmesi için top: 235px - 55px (resim yüksekliği) = 180px civarı
-         Daha basiti: Kartın toplam yüksekliği - Alt padding - Resim yüksekliği = 300 - 15 - 55 = 230px
-    */
-    .r1{right:-10px; top:calc(var(--card-padding) + 18px + 4px + 13px + 6px); z-index:12;} /* Mesaj kutusunun üst köşesi */
-    .r2{right:-10px; top:calc(var(--frame-h) - var(--card-padding) - 55px); z-index:12;} /* Mesaj kutusunun alt köşesi */
+    /* Sağ resimler (2 tane) - TÜM KUTUNUN köşelerine hizalı */
+    /* right: Biraz daha dışarıda (-25px) */
+    /* Üst köşe: Resmin üst kenarı, kartın üst kenarına (0px) hizalanacak. */
+    .r1{right:var(--edge-offset);top:0px;z-index:12;} 
+    /* Alt köşe: Resmin alt kenarı, kartın alt kenarına (300px) hizalanacak. 
+       300 (kart yüksekliği) - 55 (resim yüksekliği) = 245px */
+    .r2{right:var(--edge-offset);top:calc(var(--frame-h) - 55px);z-index:12;}
     
-    /* Sol resimler (2 tane) - Metin kutusunun köşelerine hizalı ve dışarıda */
-    .l1{left:-10px; top:calc(var(--card-padding) + 18px + 4px + 13px + 6px); z-index:12;} /* Mesaj kutusunun üst köşesi */
-    .l2{left:-10px; top:calc(var(--frame-h) - var(--card-padding) - 55px); z-index:12;} /* Mesaj kutusunun alt köşesi */
+    /* Sol resimler (2 tane) - TÜM KUTUNUN köşelerine hizalı */
+    /* left: Biraz daha dışarıda (-25px) */
+    /* Üst köşe */
+    .l1{left:var(--edge-offset);top:0px;z-index:12;}
+    /* Alt köşe */
+    .l2{left:var(--edge-offset);top:calc(var(--frame-h) - 55px);z-index:12;}
 
     /* Balonlar */
     .balloon{
