@@ -66,6 +66,7 @@
       font-weight:600;
       z-index:6;
     }
+
     img.edge{
       width:55px;
       height:55px;
@@ -73,27 +74,33 @@
       object-fit:cover;
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
       position:absolute;
-      z-index:10; /* 🔼 Kartın üstüne çıkarıldı */
+      z-index:10;
+      transition:all .3s ease;
     }
 
-    /* 🔼 Görseller biraz yukarıda */
-    .t1{top:-25px;left:calc(50% - 110px);}
-    .t2{top:-25px;left:calc(50% - 27px);}
-    .t3{top:-25px;left:calc(50% + 56px);}
+    /* Üst resimler */
+    .t1{top:-30px;left:calc(50% - 110px);}
+    .t2{top:-30px;left:calc(50% - 27px);}
+    .t3{top:-30px;left:calc(50% + 56px);}
 
-    .r1{right:4px;top:calc(50% - 110px);}
-    .r2{right:4px;top:calc(50% - 35px);}
-    .r3{right:4px;top:calc(50% + 40px);}
+    /* Alt resimler */
+    .b1{bottom:-30px;left:calc(50% - 110px);}
+    .b2{bottom:-30px;left:calc(50% - 27px);}
+    .b3{bottom:-30px;left:calc(50% + 56px);}
 
-    .b1{bottom:4px;left:calc(50% - 110px);}
-    .b2{bottom:4px;left:calc(50% - 27px);}
-    .b3{bottom:4px;left:calc(50% + 56px);}
+    /* Sağ taraf: üst ve alt kutu üzerinde olacak */
+    .r1{right:-25px;top:calc(50% - 130px);z-index:12;}
+    .r3{right:-25px;top:calc(50% + 80px);z-index:12;}
+    /* Ortadaki sağ resim yukarı alındı */
+    .r2{right:calc(50% - 27px);top:-70px;}
 
-    .l1{left:4px;top:calc(50% - 110px);}
-    .l2{left:4px;top:calc(50% - 35px);}
-    .l3{left:4px;top:calc(50% + 40px);}
+    /* Sol taraf: üst ve alt kutu üzerinde olacak */
+    .l1{left:-25px;top:calc(50% - 130px);z-index:12;}
+    .l3{left:-25px;top:calc(50% + 80px);z-index:12;}
+    /* Ortadaki sol resim aşağıya alındı */
+    .l2{left:calc(50% - 27px);bottom:-70px;}
 
-    /* 🎈 Balonlar */
+    /* Balonlar */
     .balloon{
       position:fixed;
       bottom:-80px;
@@ -106,7 +113,7 @@
       to{transform:translateY(-110vh);}
     }
 
-    /* 🎊 Konfeti */
+    /* Konfeti */
     .confetti{
       position:fixed;
       width:6px;
@@ -125,20 +132,24 @@
 </head>
 <body>
 
+  <!-- Üst resimler -->
   <img src="img/akimeno.jpg" class="edge t1">
   <img src="img/biz.jpeg" class="edge t2">
   <img src="img/uss.jpeg" class="edge t3">
 
+  <!-- Sağ -->
   <img src="img/biziz.jpeg" class="edge r1">
-  <img src="img/hiaki.jpeg" class="edge r2">
+  <img src="img/hiaki.jpeg" class="edge r2"> <!-- Ortadaki yukarı taşındı -->
   <img src="img/denji.jpeg" class="edge r3">
 
+  <!-- Alt -->
   <img src="img/demaki.png" class="edge b1">
   <img src="img/dereze.jpg" class="edge b2">
   <img src="img/akihime.jpeg" class="edge b3">
 
+  <!-- Sol -->
   <img src="img/redenji.png" class="edge l1">
-  <img src="img/spr.jpeg" class="edge l2">
+  <img src="img/spr.jpeg" class="edge l2"> <!-- Ortadaki aşağı taşındı -->
   <img src="img/PUAHAHA.jpeg" class="edge l3">
 
   <div class="card">
@@ -156,7 +167,7 @@
 
   <script>
     function startCelebration(){
-      // 🎈 Farklı şekillerde balonlar
+      // Balonlar
       for(let i=0;i<12;i++){
         const b=document.createElement('div');
         b.className='balloon';
@@ -171,7 +182,7 @@
         document.body.appendChild(b);
       }
 
-      // 🎊 Konfetiler
+      // Konfetiler
       for(let i=0;i<50;i++){
         const c=document.createElement('div');
         c.className='confetti';
