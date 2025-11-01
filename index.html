@@ -3,166 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎂 Doğum Günü Kutlaması 🎉</title>
+  <title>🎂 Özel Doğum Günü 🎉</title>
 
   <style>
     body {
-      background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
-      font-family: 'Poppins', sans-serif;
-      color: #000;
-      text-align: center;
       margin: 0;
-      overflow-x: hidden;
-      padding: 30px;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
+      text-align: center;
     }
 
-    /* Kutunun ana tasarımı */
-    .frame {
-      max-width: 400px;
-      margin: 50px auto;
-      border: 8px solid transparent;
-      padding: 20px;
-      background-color: #fff;
+    .frame-container {
       position: relative;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 600px;
+      margin: 50px auto;
     }
 
-    .message {
-      font-size: 1.2em;
-      line-height: 1.5em;
+    .inner-box {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      z-index: 10;
+      position: relative;
     }
 
-    /* Görsellerin çerçeve olarak yerleşimi */
-    .frame::before, .frame::after, .left-frame, .right-frame {
-      content: "";
-      position: absolute;
-      display: flex;
-      gap: 5px;
+    .inner-box h1 {
+      color: #ff1493;
+      font-size: 1.7em;
+      margin-bottom: 10px;
     }
 
-    /* Üst görseller */
-    .frame::before {
-      top: -70px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      justify-content: space-between;
+    .inner-box p {
+      font-size: 1.1em;
+      color: #333;
     }
 
-    /* Alt görseller */
-    .frame::after {
-      bottom: -70px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      justify-content: space-between;
-    }
-
-    /* Sol görseller */
-    .left-frame {
-      top: 0;
-      left: -70px;
-      flex-direction: column;
-      height: 100%;
-      justify-content: space-between;
-    }
-
-    /* Sağ görseller */
-    .right-frame {
-      top: 0;
-      right: -70px;
-      flex-direction: column;
-      height: 100%;
-      justify-content: space-between;
-    }
-
-    /* Görsel kutuları */
-    .frame img {
-      width: 60px;
-      height: 60px;
+    .frame-container img {
+      width: 80px;
+      height: 80px;
       object-fit: cover;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      position: absolute;
     }
 
-    /* Mobil uyum */
-    @media (max-width: 500px) {
-      .frame img {
-        width: 45px;
-        height: 45px;
+    /* Upper images */
+    .top-left     { top: -50px; left: 0; }
+    .top-center   { top: -50px; left: calc(50% - 40px); }
+    .top-right    { top: -50px; right: 0; }
+
+    /* Right images */
+    .right-top    { top: calc(33% - 40px); right: -50px; }
+    .right-center { top: calc(50% - 40px); right: -50px; }
+    .right-bottom { top: calc(66% - 40px); right: -50px; }
+
+    /* Bottom images */
+    .bottom-left  { bottom: -50px; left: 0; }
+    .bottom-center { bottom: -50px; left: calc(50% - 40px); }
+    .bottom-right { bottom: -50px; right: 0; }
+
+    /* Left images */
+    .left-top     { top: calc(33% - 40px); left: -50px; }
+    .left-center  { top: calc(50% - 40px); left: -50px; }
+    .left-bottom  { top: calc(66% - 40px); left: -50px; }
+
+    @media (max-width: 600px) {
+      .frame-container img {
+        width: 60px;
+        height: 60px;
       }
-      .frame {
-        margin-top: 120px;
+
+      .frame-container {
+        margin-top: 100px;
       }
-      .frame::before, .frame::after {
-        top: -50px;
-        bottom: -50px;
-      }
-      .left-frame, .right-frame {
-        left: -55px;
-        right: -55px;
+
+      .top-left, .top-center, .top-right,
+      .right-top, .right-center, .right-bottom,
+      .bottom-left, .bottom-center, .bottom-right,
+      .left-top, .left-center, .left-bottom {
+        transform: scale(0.85);
       }
     }
-
   </style>
 </head>
 <body>
 
-  <!-- Görsel çerçeve -->
-  <div class="frame">
-    <div class="left-frame">
-      <img src="img/akihime.jpeg">
-      <img src="img/PUAHAHA.jpeg">
-      <img src="img/spr.jpeg">
-    </div>
-    <div class="right-frame">
-      <img src="img/redenji.png">
-      <img src="img/akimeno.jpg">
-      <img src="img/dereze.jpg">
-    </div>
+<div class="frame-container">
 
-    <h1>🎉 DOĞUM GÜNÜN KUTLU OLSUN ELİF 💖</h1>
-    <p class="message">
-      İyi ki doğdun canım benim! 🎂<br>
-      Hayatımı güzelleştiren muhteşem bir insansın...<br>
-      Hep birlikte nice güzel senelere 💫
-    </p>
+  <!-- Images around the box -->
+  <img src="img/akimeno.jpg" alt="1" class="top-left">
+  <img src="img/biz.jpeg" alt="2" class="top-center">
+  <img src="img/uss.jpeg" alt="3" class="top-right">
+
+  <img src="img/biziz.jpeg" alt="4" class="right-top">
+  <img src="img/hiaki.jpeg" alt="5" class="right-center">
+  <img src="img/denji.jpeg" alt="6" class="right-bottom">
+
+  <img src="img/demaki.png" alt="7" class="bottom-left">
+  <img src="img/dereze.jpg" alt="8" class="bottom-center">
+  <img src="img/redenji.png" alt="9" class="bottom-right">
+
+  <img src="img/spr.jpeg" alt="10" class="left-top">
+  <img src="img/PUAHAHA.jpeg" alt="11" class="left-center">
+  <img src="img/akihime.jpeg" alt="12" class="left-bottom">
+
+  <!-- Inner content -->
+  <div class="inner-box">
+    <h1>🎉 ELİF’İN DOĞUM GÜNÜ 🎈</h1>
+    <p>İyi ki Doğdun! Sen benim dünyamı güzelleştiren en özel insansın 💖</p>
+    <p>Birlikte nice mutlu yıllara! 💫</p>
   </div>
 
-  <!-- Üst ve alt görseller (4'er tane) -->
-  <script>
-    const frame = document.querySelector('.frame');
-    const topImages = ['biz.jpeg', 'demaki.png', 'denji.jpeg', 'hiaki.jpeg'];
-    const bottomImages = ['biziz.jpeg', 'uss.jpeg', 'biz.jpeg', 'akimeno.jpg'];
-
-    const createRow = (imgs) => {
-      return imgs.map(src => `<img src="img/${src}">`).join('');
-    };
-
-    frame.style.setProperty('--top-frame', createRow(topImages));
-    frame.style.setProperty('--bottom-frame', createRow(bottomImages));
-
-    const before = document.createElement("div");
-    before.innerHTML = createRow(topImages);
-    before.style.position = "absolute";
-    before.style.top = "-70px";
-    before.style.left = "50%";
-    before.style.transform = "translateX(-50%)";
-    before.style.display = "flex";
-    before.style.gap = "5px";
-    frame.appendChild(before);
-
-    const after = document.createElement("div");
-    after.innerHTML = createRow(bottomImages);
-    after.style.position = "absolute";
-    after.style.bottom = "-70px";
-    after.style.left = "50%";
-    after.style.transform = "translateX(-50%)";
-    after.style.display = "flex";
-    after.style.gap = "5px";
-    frame.appendChild(after);
-  </script>
+</div>
 
 </body>
 </html>
