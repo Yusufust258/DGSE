@@ -122,10 +122,6 @@
     document.getElementById("celebrateBtn").addEventListener("click", () => {
       const btn = document.getElementById("celebrateBtn");
       const msgBox = document.getElementById("messageBox");
-      const music = document.getElementById("bg-music");
-
-      // Müzik çal
-      if (music) music.play().catch(err => console.log("Müzik çalma hatası:", err));
 
       // Mesaj kutusunu göster, butonu gizle
       btn.style.display = "none";
