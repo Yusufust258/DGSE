@@ -8,8 +8,9 @@
     :root{
       --frame-w: 340px;
       --frame-h: 300px;
-      --card-padding: 15px;
-      --edge-offset: -25px; /* Sağ/sol resimlerin karttan ne kadar dışarıda olacağı */
+      --card-border-radius: 18px; /* Kartın kenar yuvarlaklığı */
+      --image-size: 55px; /* Resimlerin boyutu */
+      --edge-offset: 10px; /* Resimlerin kartın dışına taşma miktarı (bu, görseldeki çizginin uzaklığına göre ayarlanabilir) */
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{
@@ -26,10 +27,10 @@
       width:var(--frame-w);
       height:var(--frame-h);
       background:#fff;
-      border-radius:18px;
+      border-radius:var(--card-border-radius);
       box-shadow:0 10px 25px rgba(0,0,0,0.18);
       position:relative;
-      padding:var(--card-padding);
+      padding:15px;
       text-align:left;
       z-index:5;
     }
@@ -37,11 +38,11 @@
       font-size:18px;
       color:#d6009a;
       margin-bottom:4px;
-      text-align:center; /* Başlık ortalı */
+      text-align:center;
     }
     .meta{
       font-size:13px;
-      text-align:center; /* Meta ortalı */
+      text-align:center;
       color:#444;
       margin-bottom:6px;
     }
@@ -52,7 +53,7 @@
       max-height:180px;
       overflow-y:auto;
       padding-right:5px;
-      text-align:center; /* Mesaj ortalı */
+      text-align:center;
     }
     .btn{
       position:absolute;
@@ -71,8 +72,8 @@
     }
 
     img.edge{
-      width:55px;
-      height:55px;
+      width:var(--image-size);
+      height:var(--image-size);
       border-radius:8px;
       object-fit:cover;
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
@@ -93,20 +94,36 @@
     .b3{bottom:-30px;left:calc(50% - 20px);}
     .b4{bottom:-30px;left:calc(50% + 45px);}
 
-    /* Sağ resimler (2 tane) - TÜM KUTUNUN köşelerine hizalı */
-    /* right: Biraz daha dışarıda (-25px) */
-    /* Üst köşe: Resmin üst kenarı, kartın üst kenarına (0px) hizalanacak. */
-    .r1{right:var(--edge-offset);top:0px;z-index:12;} 
-    /* Alt köşe: Resmin alt kenarı, kartın alt kenarına (300px) hizalanacak. 
-       300 (kart yüksekliği) - 55 (resim yüksekliği) = 245px */
-    .r2{right:var(--edge-offset);top:calc(var(--frame-h) - 55px);z-index:12;}
+    /* Sağ resimler (2 tane) - Köşe yuvarlaklığını takip edecek şekilde */
+    /* Resmin merkezinin, kartın köşesinin yuvarlaklığını takip etmesi için matematiksel hesaplama. */
+    /* Resimlerin kartın dışına ne kadar taşması gerektiğini 'edge-offset' belirliyor. */
+
+    /* Sağ üst köşe */
+    .r1{
+      right: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      top: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      transform: rotate(25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+    } 
+    /* Sağ alt köşe */
+    .r2{
+      right: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      bottom: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      transform: rotate(-25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+    }
     
-    /* Sol resimler (2 tane) - TÜM KUTUNUN köşelerine hizalı */
-    /* left: Biraz daha dışarıda (-25px) */
-    /* Üst köşe */
-    .l1{left:var(--edge-offset);top:0px;z-index:12;}
-    /* Alt köşe */
-    .l2{left:var(--edge-offset);top:calc(var(--frame-h) - 55px);z-index:12;}
+    /* Sol resimler (2 tane) - Köşe yuvarlaklığını takip edecek şekilde */
+    /* Sol üst köşe */
+    .l1{
+      left: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      top: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      transform: rotate(-25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+    }
+    /* Sol alt köşe */
+    .l2{
+      left: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      bottom: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
+      transform: rotate(25deg); /* Hafif bir açı ekleyerek eğri hissini güçlendirir */
+    }
 
     /* Balonlar */
     .balloon{
