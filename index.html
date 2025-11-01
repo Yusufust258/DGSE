@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🎂 Arkadaşının Doğum Günü 🎉</title>
 
   <!-- CSS -->
   <style>
+    /* Genel */
+    :root {
+      --img-size: 80px;
+    }
     body {
       background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
       font-family: 'Poppins', sans-serif;
@@ -14,10 +18,14 @@
       text-align: center;
       margin: 0;
       overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
 
     .container {
       padding: 50px 20px;
+      position: relative;
+      z-index: 5; /* içerik görsellerin üstünde olmasını sağlayabilir */
     }
 
     h1 {
@@ -54,31 +62,43 @@
       display: none;
     }
 
+    /* Görseller için ortak stil */
     .corner-img {
       position: absolute;
-      width: 80px;
-      opacity: 0.9;
+      width: var(--img-size);
+      opacity: 0.95;
+      z-index: 10; /* sayfadaki diğer öğelerin üzerinde göster */
+      pointer-events: none; /* tıklanabilir olmasın, butona etki etmesin */
     }
 
+    /* Dört köşe pozisyonu */
     .top-left { top: 10px; left: 10px; }
     .top-right { top: 10px; right: 10px; }
     .bottom-left { bottom: 10px; left: 10px; }
     .bottom-right { bottom: 10px; right: 10px; }
 
+    /* 5. görsel üst ortada */
+    .top-center {
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 1.6em; }
       button { width: 80%; }
-      .corner-img { width: 60px; }
+      :root { --img-size: 60px; }
     }
 
+    /* Balon animasyonu */
     .balloon {
       position: fixed;
-      bottom: -100px;
+      bottom: -120px;
       width: 40px;
       height: 60px;
       border-radius: 50%;
       animation: rise 8s linear infinite;
-      z-index: 10;
+      z-index: 4;
     }
 
     @keyframes rise {
@@ -105,20 +125,20 @@
     </div>
   </div>
 
-  <!-- Köşe resimleri -->
-  <img src="img/biz.jpeg" class="corner-img top-left" />
-  <img src="img/demaki.jpeg" class="corner-img top-right" />
-  <img src="img/denji.jpeg class="corner-img bottom-left" />
-  <img src="img/hiaki.jpeg" class="corner-img bottom-right" />
-
-  <!-- Arka plan müziği -->
-  <audio id="bg-music" src="music/bg-music.mp3"></audio>
+  <!-- Köşe resimleri (img klasöründe bu dosyalar olmalı) -->
+  <img src="img/biz.jpeg" class="corner-img top-left" alt="biz" />
+  <img src="img/demaki.jpeg" class="corner-img top-right" alt="demaki" />
+  <img src="img/denji.jpeg" class="corner-img bottom-left" alt="denji" />
+  <img src="img/hiaki.jpeg" class="corner-img bottom-right" alt="hiaki" />
+  <!-- 5. görsel: dosya adını kendine göre değiştir (örn: yeni.jpeg) -->
+  <img src="img/redenji.png" class="corner-img top-center" alt="yeni" />
 
   <!-- Confetti kütüphanesi -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <!-- JS -->
   <script>
+    // Başlat butonuna tıklandığında çalışır
     document.getElementById("celebrateBtn").addEventListener("click", () => {
       const btn = document.getElementById("celebrateBtn");
       const msgBox = document.getElementById("messageBox");
@@ -130,18 +150,21 @@
       // Confetti patlat
       if (typeof confetti === "function") {
         confetti({
-          particleCount: 200,
+          particleCount: 5000,
           spread: 120,
           origin: { y: 0.6 }
         });
       }
 
-      // Balonları oluştur
-      for (let i = 0; i < 10; i++) {
+      // Balonları oluştur (10 tane)
+      for (let i = 0; i < 50; i++) {
         const balloon = document.createElement("div");
         balloon.className = "balloon";
         balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.width = (30 + Math.random() * 40) + "px";
+        balloon.style.height = (45 + Math.random() * 60) + "px";
         balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        balloon.style.zIndex = 3;
         document.body.appendChild(balloon);
         setTimeout(() => balloon.remove(), 8000);
       }
