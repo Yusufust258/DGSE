@@ -74,21 +74,23 @@
       position:absolute;
       z-index:3;
     }
-    .t1{top:4px;left:calc(50% - 110px);}
-    .t2{top:4px;left:calc(50% - 27px);}
-    .t3{top:4px;left:calc(50% + 56px);}
 
-    .r1{right:4px;top:calc(50% - 100px);}
-    .r2{right:4px;top:calc(50% - 25px);}
-    .r3{right:4px;top:calc(50% + 50px);}
+    /* 🔼 Görseller biraz yukarı taşındı */
+    .t1{top:-25px;left:calc(50% - 110px);}
+    .t2{top:-25px;left:calc(50% - 27px);}
+    .t3{top:-25px;left:calc(50% + 56px);}
+
+    .r1{right:4px;top:calc(50% - 110px);}
+    .r2{right:4px;top:calc(50% - 35px);}
+    .r3{right:4px;top:calc(50% + 40px);}
 
     .b1{bottom:4px;left:calc(50% - 110px);}
     .b2{bottom:4px;left:calc(50% - 27px);}
     .b3{bottom:4px;left:calc(50% + 56px);}
 
-    .l1{left:4px;top:calc(50% - 100px);}
-    .l2{left:4px;top:calc(50% - 25px);}
-    .l3{left:4px;top:calc(50% + 50px);}
+    .l1{left:4px;top:calc(50% - 110px);}
+    .l2{left:4px;top:calc(50% - 35px);}
+    .l3{left:4px;top:calc(50% + 40px);}
 
     .balloon{
       position:fixed;
@@ -102,6 +104,8 @@
     @keyframes floatUp{
       to{transform:translateY(-110vh);}
     }
+
+    /* 🎊 Konfeti stili eklendi */
     .confetti{
       position:fixed;
       width:6px;
@@ -136,7 +140,6 @@
   <img src="img/spr.jpeg" class="edge l2">
   <img src="img/PUAHAHA.jpeg" class="edge l3">
 
-
   <div class="card">
     <h1>Doğum Günün Kutlu Olsun 💖</h1>
     <div class="meta">Sevgili ❤️</div>
@@ -152,6 +155,7 @@
 
   <script>
     function startCelebration(){
+      // Balonlar
       for(let i=0;i<10;i++){
         const b=document.createElement('div');
         b.className='balloon';
@@ -160,6 +164,7 @@
         b.style.animationDelay=(Math.random()*3)+'s';
         document.body.appendChild(b);
       }
+      // 🎊 Konfetiler
       for(let i=0;i<50;i++){
         const c=document.createElement('div');
         c.className='confetti';
