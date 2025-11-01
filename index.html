@@ -9,7 +9,7 @@
   <style>
     /* Genel */
     :root {
-      --img-size: 120px; /* Görsellerin boyutu büyütüldü */
+      --img-size: 160px; /* Görseller daha da büyütüldü */
     }
     body {
       background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
@@ -25,7 +25,7 @@
     .container {
       padding: 50px 20px;
       position: relative;
-      z-index: 5; /* içerik görsellerin üstünde olmasını sağlayabilir */
+      z-index: 5; /* içerik görsellerin üstünde olmasını sağlar */
     }
 
     h1 {
@@ -48,7 +48,7 @@
       cursor: pointer;
       transition: 0.3s;
       display: block;
-      margin: 20px auto; /* Buton ortalandı */
+      margin: 20px auto;
     }
 
     button:hover {
@@ -79,9 +79,9 @@
     .bottom-left { bottom: 10px; left: 10px; }
     .bottom-right { bottom: 10px; right: 10px; }
 
-    /* 5. görsel üst ortada */
+    /* 5. görsel üst ortada ama biraz aşağıda */
     .top-center {
-      top: 10px;
+      top: 100px; /* Ortadaki görsel aşağıya çekildi */
       left: 50%;
       transform: translateX(-50%);
     }
@@ -89,7 +89,7 @@
     @media (max-width: 600px) {
       h1 { font-size: 1.6em; }
       button { width: 80%; }
-      :root { --img-size: 90px; }
+      :root { --img-size: 120px; }
     }
 
     /* Balon animasyonu */
@@ -112,8 +112,8 @@
 <body>
 
   <div class="container">
-    <h1>🎂 EEEEEEEEEEEELİİİİİİİİİİİFFFFFFF’in Doğum Günü 🎉</h1>
-    <p class="subtitle">İYİKİ DOĞDUN CANIM ÇİÇEĞİM💖</p>
+    <h1>🎂 ELİİİİİİİİİİİFFFFFFF’in Doğum Günü 🎉</h1>
+    <p class="subtitle">İYİKİ DOĞDUN CANIM💖</p>
 
     <button id="celebrateBtn">Kutlamayı Başlat 🎈</button>
 
@@ -122,15 +122,15 @@
       <p id="birthdayMessage">
         İYİKİ DOĞDUN CANIM SENİ ÇOK AMA ÇOK AMA ÇOK SEVİYOM İYKKİ VARSIN
         off amk niye geldim bu dünyaya yaaa DERKEN SEN ÇIKTIN BİRDEN İYİKİ GELMİŞİM
-        DEDİM SENİNLE TANISTIMYA ÇOK AMA ÇOK MUTLUYUM HEE ESSEK SENİ COK SEVİYOM SENİ
-        COOOOOOOOOOOOOOOOOOOOOOOKK💜
+        DEDİM SENİNLE TANISTIMYA ÇOK SUPER GUZEL ENFES BİSEY YA SENİ COOOOOOOOOOOOOOK AMMA
+        COOOOOOOOOOOK SEVYM ASKM BNM💜
       </p>
     </div>
   </div>
 
   <!-- Köşe resimleri (img klasöründe bu dosyalar olmalı) -->
   <img src="img/biz.jpeg" class="corner-img top-left" alt="biz" />
-  <img src="img/demaki.png" class="corner-img top-right" alt="demaki" />
+  <img src="img/demaki.jpeg" class="corner-img top-right" alt="demaki" />
   <img src="img/denji.jpeg" class="corner-img bottom-left" alt="denji" />
   <img src="img/hiaki.jpeg" class="corner-img bottom-right" alt="hiaki" />
   <img src="img/redenji.png" class="corner-img top-center" alt="redenji" />
