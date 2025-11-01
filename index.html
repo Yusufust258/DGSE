@@ -12,13 +12,14 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
       text-align: center;
+      overflow-x: hidden;
     }
 
     .frame-container {
       position: relative;
       width: 90%;
       max-width: 600px;
-      margin: 50px auto;
+      margin: 100px auto;
     }
 
     .inner-box {
@@ -39,11 +40,12 @@
     .inner-box p {
       font-size: 1.1em;
       color: #333;
+      margin-top: 5px;
     }
 
     .frame-container img {
-      width: 80px;
-      height: 80px;
+      width: 75px;
+      height: 75px;
       object-fit: cover;
       border-radius: 10px;
       position: absolute;
@@ -51,32 +53,28 @@
 
     /* Upper images */
     .top-left     { top: -50px; left: 0; }
-    .top-center   { top: -50px; left: calc(50% - 40px); }
+    .top-center   { top: -50px; left: calc(50% - 37.5px); }
     .top-right    { top: -50px; right: 0; }
 
     /* Right images */
-    .right-top    { top: calc(33% - 40px); right: -50px; }
-    .right-center { top: calc(50% - 40px); right: -50px; }
-    .right-bottom { top: calc(66% - 40px); right: -50px; }
+    .right-top    { top: calc(33% - 37.5px); right: -50px; }
+    .right-center { top: calc(50% - 37.5px); right: -50px; }
+    .right-bottom { top: calc(66% - 37.5px); right: -50px; }
 
     /* Bottom images */
     .bottom-left  { bottom: -50px; left: 0; }
-    .bottom-center { bottom: -50px; left: calc(50% - 40px); }
+    .bottom-center { bottom: -50px; left: calc(50% - 37.5px); }
     .bottom-right { bottom: -50px; right: 0; }
 
     /* Left images */
-    .left-top     { top: calc(33% - 40px); left: -50px; }
-    .left-center  { top: calc(50% - 40px); left: -50px; }
-    .left-bottom  { top: calc(66% - 40px); left: -50px; }
+    .left-top     { top: calc(33% - 37.5px); left: -50px; }
+    .left-center  { top: calc(50% - 37.5px); left: -50px; }
+    .left-bottom  { top: calc(66% - 37.5px); left: -50px; }
 
     @media (max-width: 600px) {
       .frame-container img {
-        width: 60px;
-        height: 60px;
-      }
-
-      .frame-container {
-        margin-top: 100px;
+        width: 55px;
+        height: 55px;
       }
 
       .top-left, .top-center, .top-right,
