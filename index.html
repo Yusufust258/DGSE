@@ -77,30 +77,43 @@
       z-index:10;
       transition:all .3s ease;
     }
+    
+    /* Resimlerin Yatay Aralığı için Hesaplama */
+    /* Kart genişliği 340px. 4 resim 55px. Toplam genişlik 4*55 = 220px. 
+       Geriye kalan 120px'i (340-220) aralıklara (3 aralık) ve kenar boşluklarına bölüyoruz.
+       Her resim arasındaki boşluk ~20px olsun. Kenarlarda da 10px bırakalım. 
+       Toplam: 10 + 55 + 20 + 55 + 20 + 55 + 20 + 55 + 10 = 300px.
+       Ortadan hizalama için: (340 - 300) / 2 = 20px sağa kayma, yani left: calc(50% - 150px) başlangıç noktası. */
+    
+    /* Üst resimler (4 tane) */
+    /* Başlangıç noktası: 50% - (150px) */
+    .t1{top:-30px;left:calc(50% - 150px);}
+    .t2{top:-30px;left:calc(50% - 85px);} /* 150 - 55 = 95. 95-20=75. 150-75=75. 150-55-20=75 */
+    .t3{top:-30px;left:calc(50% - 20px);} /* 150 - 55*2 - 20*1 = 40. */
+    .t4{top:-30px;left:calc(50% + 45px);} /* 150 - 55*3 - 20*2 = 15. */
 
-    /* Üst resimler */
-    .t1{top:-30px;left:calc(50% - 110px);}
-    .t2{top:-30px;left:calc(50% - 27px);}
-    .t3{top:-30px;left:calc(50% + 56px);}
+    /* Alt resimler (4 tane) */
+    .b1{bottom:-30px;left:calc(50% - 150px);}
+    .b2{bottom:-30px;left:calc(50% - 85px);}
+    .b3{bottom:-30px;left:calc(50% - 20px);}
+    .b4{bottom:-30px;left:calc(50% + 45px);}
 
-    /* Alt resimler */
-    .b1{bottom:-30px;left:calc(50% - 110px);}
-    .b2{bottom:-30px;left:calc(50% - 27px);}
-    .b3{bottom:-30px;left:calc(50% + 56px);}
+    /* Sağ resimler (2 tane) */
+    /* Yükseklik: Kartın yüksekliği 300px. Resim yüksekliği 55px. 
+       Köşelere hizalamak için: Üstteki 15px (kart padding) + (300px * 0.25) ve alttaki 15px + (300px * 0.75) civarı.
+       'top' değeri kartın yüksekliğinin yaklaşık %25'i ve %75'i hizasına geliyor.
+       top: 15px (padding) + 300 * 0.25 - 55/2 (resmin yarısı) = ~75 - 27.5 = 47.5px. 
+       top: 15px (padding) + 300 * 0.75 - 55/2 (resmin yarısı) = ~240 - 27.5 = 212.5px.
+       right: -25px'ten -10px'e yaklaştırdık. */
+    .r1{right:-10px;top:48px;z-index:12;} /* ~%25 hizası */
+    .r2{right:-10px;top:212px;z-index:12;} /* ~%75 hizası */
+    
+    /* Sol resimler (2 tane) */
+    /* left: -25px'ten -10px'e yaklaştırdık. */
+    .l1{left:-10px;top:48px;z-index:12;} /* ~%25 hizası */
+    .l2{left:-10px;top:212px;z-index:12;} /* ~%75 hizası */
 
-    /* Sağ taraf: üst ve alt kutu üzerinde olacak */
-    .r1{right:-25px;top:calc(50% - 130px);z-index:12;}
-    .r3{right:-25px;top:calc(50% + 80px);z-index:12;}
-    /* Ortadaki sağ resim yukarı alındı */
-    .r2{right:calc(50% - 27px);top:-70px;}
-
-    /* Sol taraf: üst ve alt kutu üzerinde olacak */
-    .l1{left:-25px;top:calc(50% - 130px);z-index:12;}
-    .l3{left:-25px;top:calc(50% + 80px);z-index:12;}
-    /* Ortadaki sol resim aşağıya alındı */
-    .l2{left:calc(50% - 27px);bottom:-70px;}
-
-    /* Balonlar */
+    /* Balonlar ve Konfeti stilleri aynı kalır */
     .balloon{
       position:fixed;
       bottom:-80px;
@@ -113,7 +126,6 @@
       to{transform:translateY(-110vh);}
     }
 
-    /* Konfeti */
     .confetti{
       position:fixed;
       width:6px;
@@ -132,25 +144,17 @@
 </head>
 <body>
 
-  <!-- Üst resimler -->
   <img src="img/akimeno.jpg" class="edge t1">
   <img src="img/biz.jpeg" class="edge t2">
   <img src="img/uss.jpeg" class="edge t3">
-
-  <!-- Sağ -->
-  <img src="img/biziz.jpeg" class="edge r1">
-  <img src="img/hiaki.jpeg" class="edge r2"> <!-- Ortadaki yukarı taşındı -->
-  <img src="img/denji.jpeg" class="edge r3">
-
-  <!-- Alt -->
+  <img src="img/hiaki.jpeg" class="edge t4"> <img src="img/biziz.jpeg" class="edge r1">
+  <img src="img/denji.jpeg" class="edge r2">
+  
   <img src="img/demaki.png" class="edge b1">
   <img src="img/dereze.jpg" class="edge b2">
   <img src="img/akihime.jpeg" class="edge b3">
-
-  <!-- Sol -->
-  <img src="img/redenji.png" class="edge l1">
-  <img src="img/spr.jpeg" class="edge l2"> <!-- Ortadaki aşağı taşındı -->
-  <img src="img/PUAHAHA.jpeg" class="edge l3">
+  <img src="img/spr.jpeg" class="edge b4"> <img src="img/redenji.png" class="edge l1">
+  <img src="img/PUAHAHA.jpeg" class="edge l2">
 
   <div class="card">
     <h1>Doğum Günün Kutlu Olsun 💖</h1>
