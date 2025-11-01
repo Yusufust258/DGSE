@@ -9,7 +9,7 @@
   <style>
     /* Genel */
     :root {
-      --img-size: 80px;
+      --img-size: 120px; /* Görsellerin boyutu büyütüldü */
     }
     body {
       background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
@@ -47,6 +47,8 @@
       font-size: 1.1em;
       cursor: pointer;
       transition: 0.3s;
+      display: block;
+      margin: 20px auto; /* Buton ortalandı */
     }
 
     button:hover {
@@ -67,8 +69,8 @@
       position: absolute;
       width: var(--img-size);
       opacity: 0.95;
-      z-index: 10; /* sayfadaki diğer öğelerin üzerinde göster */
-      pointer-events: none; /* tıklanabilir olmasın, butona etki etmesin */
+      z-index: 10;
+      pointer-events: none;
     }
 
     /* Dört köşe pozisyonu */
@@ -87,7 +89,7 @@
     @media (max-width: 600px) {
       h1 { font-size: 1.6em; }
       button { width: 80%; }
-      :root { --img-size: 60px; }
+      :root { --img-size: 90px; }
     }
 
     /* Balon animasyonu */
@@ -130,15 +132,13 @@
   <img src="img/demaki.jpeg" class="corner-img top-right" alt="demaki" />
   <img src="img/denji.jpeg" class="corner-img bottom-left" alt="denji" />
   <img src="img/hiaki.jpeg" class="corner-img bottom-right" alt="hiaki" />
-  <!-- 5. görsel: dosya adını kendine göre değiştir (örn: yeni.jpeg) -->
-  <img src="img/redenji.png.png" class="corner-img top-center" alt="yeni" />
+  <img src="img/redenji.png" class="corner-img top-center" alt="redenji" />
 
   <!-- Confetti kütüphanesi -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <!-- JS -->
   <script>
-    // Başlat butonuna tıklandığında çalışır
     document.getElementById("celebrateBtn").addEventListener("click", () => {
       const btn = document.getElementById("celebrateBtn");
       const msgBox = document.getElementById("messageBox");
@@ -150,13 +150,13 @@
       // Confetti patlat
       if (typeof confetti === "function") {
         confetti({
-          particleCount: 5000,
+          particleCount: 300,
           spread: 120,
           origin: { y: 0.6 }
         });
       }
 
-      // Balonları oluştur (10 tane)
+      // Balonları oluştur (50 tane)
       for (let i = 0; i < 50; i++) {
         const balloon = document.createElement("div");
         balloon.className = "balloon";
@@ -164,7 +164,6 @@
         balloon.style.width = (30 + Math.random() * 40) + "px";
         balloon.style.height = (45 + Math.random() * 60) + "px";
         balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-        balloon.style.zIndex = 3;
         document.body.appendChild(balloon);
         setTimeout(() => balloon.remove(), 8000);
       }
