@@ -1,189 +1,162 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🎂 Doğum Günü Kutlaması 🎉</title>
 
   <style>
     body {
       background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
       color: #fff;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       margin: 0;
-      overflow-x: hidden;
-      position: relative;
     }
 
-    .container {
-      margin: 90px auto;
-      max-width: 450px;
-      padding: 25px;
-      background-color: #fff;
-      color: #000;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    .wrapper {
       position: relative;
-      z-index: 5;
+      width: 350px;
+      height: 350px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      color: black;
+      padding: 15px;
+      box-sizing: border-box;
+      text-align: center;
+      overflow: hidden;
     }
 
     h1 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
-      color: #d6009a;
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #ff1493;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
     }
 
     button {
+      margin-top: 10px;
+      padding: 10px 20px;
       background-color: #ff66cc;
-      color: white;
       border: none;
-      border-radius: 25px;
-      padding: 10px 25px;
-      font-size: 1em;
+      color: white;
+      border-radius: 30px;
       cursor: pointer;
-      transition: 0.3s;
-      margin: 15px 0 10px;
+      font-size: 14px;
     }
+
     button:hover {
       background-color: #e055b8;
     }
 
-    #messageBox {
-      margin-top: 15px;
-      font-size: 1em;
-      font-weight: 500;
-    }
-
-    .edge-img {
+    .frame-img {
       position: absolute;
-      border-radius: 10px;
-      object-fit: cover;
       width: 60px;
       height: 60px;
-      z-index: 3;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     }
 
-    @media (max-width: 600px) {
-      .edge-img {
-        width: 50px;
-        height: 50px;
-      }
-    }
+    .top { top: 5px; }
+    .bottom { bottom: 5px; }
+    .left { left: 5px; }
+    .right { right: 5px; }
 
-    /* Edge positions (3 top, 3 right, 3 bottom, 3 left) */
-    .img1 { top: 10px; left: calc(50% - 95px); }
-    .img2 { top: 10px; left: calc(50% - 30px); }
-    .img3 { top: 10px; left: calc(50% + 35px); }
+    /* Üst sıra: 3 resim */
+    #img1 { top: 10px; left: 65px; }
+    #img2 { top: 10px; left: 145px; }
+    #img3 { top: 10px; left: 225px; }
 
-    .img4 { top: calc(50% - 90px); right: 10px;}
-    .img5 { top: calc(50% - 25px); right: 10px;}
-    .img6 { top: calc(50% + 40px); right: 10px;}
+    /* Alt sıra: 3 resim */
+    #img4 { bottom: 10px; left: 65px; }
+    #img5 { bottom: 10px; left: 145px; }
+    #img6 { bottom: 10px; left: 225px; }
 
-    .img7 { bottom: 10px; left: calc(50% - 95px); }
-    .img8 { bottom: 10px; left: calc(50% - 30px); }
-    .img9 { bottom: 10px; left: calc(50% + 35px); }
+    /* Sol dikey: 3 resim */
+    #img7 { top: 85px; left: 10px; }
+    #img8 { top: 155px; left: 10px; }
+    #img9 { top: 225px; left: 10px; }
 
-    .img10 { top: calc(50% - 90px); left: 10px;}
-    .img11 { top: calc(50% - 25px); left: 10px;}
-    .img12 { top: calc(50% + 40px); left: 10px;}
+    /* Sağ dikey: 3 resim */
+    #img10 { top: 85px; right: 10px; }
+    #img11 { top: 155px; right: 10px; }
+    #img12 { top: 225px; right: 10px; }
 
-    /* Ballon animation */
-    .balloon {
-      position: fixed;
-      bottom: -120px;
-      animation: rise 8s linear infinite;
-      z-index: 2;
-    }
-
-    @keyframes rise {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
-    }
-
-    .shape-circle { border-radius: 50%; }
-    .shape-square { border-radius: 15%; }
-    .shape-heart {
-      position: relative;
-      background-color: inherit;
-      transform: rotate(-45deg);
-    }
-    .shape-heart::before,
-    .shape-heart::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: inherit;
-      border-radius: 50%;
-    }
-    .shape-heart::before {
-      top: -50%;
-      left: 0;
-    }
-    .shape-heart::after {
-      left: 50%;
-      top: 0;
-    }
-    .shape-star {
-      clip-path: polygon(50% 0%, 61% 38%, 98% 38%, 68% 59%, 79% 95%, 50% 72%, 21% 95%, 32% 59%, 2% 38%, 39% 38%);
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- 12 Çerçeve Görseli -->
-  <img src="img/akimeno.jpg" class="edge-img img1">
-  <img src="img/biz.jpeg" class="edge-img img2">
-  <img src="img/uss.jpeg" class="edge-img img3">
-  <img src="img/biziz.jpeg" class="edge-img img4">
-  <img src="img/hiaki.jpeg" class="edge-img img5">
-  <img src="img/denji.jpeg" class="edge-img img6">
-  <img src="img/demaki.png" class="edge-img img7">
-  <img src="img/dereze.jpg" class="edge-img img8">
-  <img src="img/akimeno.jpg" class="edge-img img9">
-  <img src="img/redenji.png" class="edge-img img10">
-  <img src="img/spr.jpeg" class="edge-img img11">
-  <img src="img/PUAHAHA.jpeg" class="edge-img img12">
-
-  <div class="container">
-    <h1>🎂 ELİF’in Doğum Günü 🎉</h1>
-    <p>İYİKİ DOĞDUN CANIM 💖</p>
+  <div class="wrapper">
+    <h1>🎉 ELİF'in Doğum Günü 🎉</h1>
+    <p>İYİ Kİ DOĞDUN CANIM 💖</p>
 
     <button id="celebrateBtn">Kutlamayı Başlat 🎈</button>
 
-    <div id="messageBox">
-      💌 İYİKİ DOĞDUN CANIM, SENİ ÇOOOOOK SEVİYORUM!  
-      ❤️ İYİKİ VARSIN, NİCE BERABER SENELERE 💜
-    </div>
+    <!-- Çerçeve Görselleri -->
+    <img src="img/akimeno.jpg" id="img1" class="frame-img">
+    <img src="img/biz.jpeg" id="img2" class="frame-img">
+    <img src="img/uss.jpeg" id="img3" class="frame-img">
+    <img src="img/biziz.jpeg" id="img4" class="frame-img">
+    <img src="img/hiaki.jpeg" id="img5" class="frame-img">
+    <img src="img/denji.jpeg" id="img6" class="frame-img">
+    <img src="img/demaki.png" id="img7" class="frame-img">
+    <img src="img/dereze.jpg" id="img8" class="frame-img">
+    <img src="img/akihime.jpeg" id="img9" class="frame-img">
+    <img src="img/redenji.png" id="img10" class="frame-img">
+    <img src="img/spr.jpeg" id="img11" class="frame-img">
+    <img src="img/PUAHAHA.jpeg" id="img12" class="frame-img">
   </div>
 
+  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
     document.getElementById("celebrateBtn").addEventListener("click", () => {
+      // Butonu gizle
       document.getElementById("celebrateBtn").style.display = "none";
 
-      const shapes = ["circle", "square", "heart", "star"];
-      for (let i = 0; i < 40; i++) {
-        const balloon = document.createElement("div");
-        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        balloon.className = `balloon shape-${shape}`;
-        balloon.style.left = Math.random() * 100 + "vw";
-        balloon.style.width = (30 + Math.random() * 40) + "px";
-        balloon.style.height = (30 + Math.random() * 40) + "px";
-        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-        document.body.appendChild(balloon);
-        setTimeout(() => balloon.remove(), 8000);
-      }
-
+      // Konfeti
       confetti({
-        particleCount: 1500,
-        spread: 100,
-        origin: { y: 0.7 }
+        particleCount: 800,
+        spread: 120,
+        origin: { x: 0.5, y: 1 }
       });
+
+      // Balon efekti
+      for (let i = 0; i < 20; i++) {
+        const balloon = document.createElement("div");
+        balloon.style.position = "fixed";
+        balloon.style.bottom = "-100px";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.width = (30 + Math.random() * 20) + "px";
+        balloon.style.height = (60 + Math.random() * 20) + "px";
+        balloon.style.borderRadius = "50%";
+        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 90%, 75%)`;
+        balloon.style.animation = "rise 5s linear";
+        document.body.appendChild(balloon);
+
+        setTimeout(() => balloon.remove(), 5000);
+      }
     });
   </script>
 
+  <style>
+    @keyframes rise {
+      to { transform: translateY(-800px); opacity: 0; }
+    }
+  </style>
+
 </body>
+
 </html>
