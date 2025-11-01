@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎂 Arkadaşının Doğum Günü 🎉</title>
+
+  <!-- CSS -->
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background-color: #ff66cc;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e055b8;
+    }
+
+    #messageBox {
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      display: none;
+    }
+
+    .corner-img {
+      position: absolute;
+      width: 80px;
+      opacity: 0.9;
+    }
+
+    .top-left { top: 10px; left: 10px; }
+    .top-right { top: 10px; right: 10px; }
+    .bottom-left { bottom: 10px; left: 10px; }
+    .bottom-right { bottom: 10px; right: 10px; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6em; }
+      button { width: 80%; }
+      .corner-img { width: 60px; }
+    }
+
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 40px;
+      height: 60px;
+      border-radius: 50%;
+      animation: rise 8s linear infinite;
+      z-index: 10;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎂 ELİİİİİİİİİİİFFFFFFF’in Doğum Günü 🎉</h1>
+    <p class="subtitle">İYİKİ DOĞDUN CANIM💖</p>
+
+    <button id="celebrateBtn">Kutlamayı Başlat 🎈</button>
+
+    <div id="messageBox">
+      <h2>💌 Mesajım:</h2>
+      <p id="birthdayMessage">
+        İYİKİ DOĞDUN CANIM SENİ ÇOK AMA ÇOK AMA ÇOK SEVİYOM İYKKİ VARSIN
+        off amk niye geldim bu dünyaya yaaa DERKEN SEN ÇIKTIN BİRDEN İYİKİ GELMİŞİM
+        DEDİM SENİNLE TANISTIMYA ÇOK AMA ÇOK MUTLUYUM İYİKİ VARSIN NİCE BERABER SENELERE 💜
+      </p>
+    </div>
+  </div>
+
+  <!-- Köşe resimleri -->
+  <img src="img/USS.png" class="corner-img top-left" />
+  <img src="img/USSS.jpg" class="corner-img top-right" />
+  <img src="img/USSSS.png" class="corner-img bottom-left" />
+  <img src="img/US_mi_bilemedim.jpg" class="corner-img bottom-right" />
+
+  <!-- Arka plan müziği -->
+  <audio id="bg-music" src="music/bg-music.mp3"></audio>
+
+  <!-- Confetti kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- JS -->
+  <script>
+    document.getElementById("celebrateBtn").addEventListener("click", () => {
+      const btn = document.getElementById("celebrateBtn");
+      const msgBox = document.getElementById("messageBox");
+      const music = document.getElementById("bg-music");
+
+      // Müzik çal
+      if (music) music.play().catch(err => console.log("Müzik çalma hatası:", err));
+
+      // Mesaj kutusunu göster, butonu gizle
+      btn.style.display = "none";
+      msgBox.style.display = "block";
+
+      // Confetti patlat
+      if (typeof confetti === "function") {
+        confetti({
+          particleCount: 200,
+          spread: 120,
+          origin: { y: 0.6 }
+        });
+      }
+
+      // Balonları oluştur
+      for (let i = 0; i < 10; i++) {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 8000);
+      }
+    });
+  </script>
+
+</body>
+</html>
