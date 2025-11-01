@@ -5,46 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🎂 Arkadaşının Doğum Günü 🎉</title>
 
-  <!-- CSS -->
   <style>
-    /* Genel */
     :root {
-      --img-size: 120px; /* Görsel boyutu */
+      --img-size: 130px;
     }
-
     body {
       background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
       font-family: 'Poppins', sans-serif;
-      color: #000;
+      color: #fff;
       text-align: center;
       margin: 0;
       overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
     }
-
     .container {
-      padding: 40px 20px;
-      position: relative;
-      z-index: 5;
-      max-width: 700px;
-      margin: 50px auto 0 auto;
-      background-color: #fff; /* Tamamen beyaz */
+      padding: 30px 20px;
+      max-width: 650px;
+      margin: 100px auto;
+      background-color: white;
+      color: black;
       border-radius: 20px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+      z-index: 5;
+      position: relative;
     }
-
     h1 {
-      font-size: 2.2em;
-      margin-bottom: 10px;
-      color: #ff10af;
+      color: #d6009a;
     }
-
-    .subtitle {
-      font-size: 1.3em;
-      margin-bottom: 30px;
-      color: #333;
-    }
-
     button {
       background-color: #ff66cc;
       color: white;
@@ -55,110 +41,105 @@
       cursor: pointer;
       transition: 0.3s;
       display: block;
-      margin: 0 auto 20px auto;
+      margin: 10px auto 20px auto;
     }
-
     button:hover {
       background-color: #e055b8;
     }
-
-    #messageBox {
-      margin-top: 20px;
-      background-color: #f8f8f8;
-      border-radius: 15px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      color: #444;
-    }
-
-    /* Görseller için ortak stil */
     .corner-img {
       position: absolute;
       width: var(--img-size);
+      opacity: 0.95;
       z-index: 10;
       pointer-events: none;
     }
-
     .top-left { top: 10px; left: 10px; }
     .top-right { top: 10px; right: 10px; }
     .bottom-left { bottom: 10px; left: 10px; }
     .bottom-right { bottom: 10px; right: 10px; }
-
-    /* Ortadaki görsel (altta, hafif sola kayan) */
     .bottom-center {
-      bottom: 90px;
-      left: 45%; /* Biraz sola çektik */
+      bottom: 30px;
+      left: 50%;
       transform: translateX(-50%);
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 1.8em; }
-      button { width: 80%; }
-      :root { --img-size: 90px; } /* Küçük ekranda görselleri küçült */
-    }
-
-    /* Balon animasyonu */
     .balloon {
       position: fixed;
-      bottom: -120px;
-      width: 40px;
-      height: 60px;
-      border-radius: 50%;
+      bottom: -150px;
       animation: rise 8s linear infinite;
-      z-index: 4;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: white;
     }
-
     @keyframes rise {
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    .circle { border-radius: 50%; background-color: hsl(0, 70%, 60%); }
+    .heart {
+      width: 50px; height: 50px;
+      background-color: hsl(330, 70%, 60%);
+      transform: rotate(-45deg);
+      position: relative;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      width: 50px;
+      height: 50px;
+      background-color: inherit;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before { top: -25px; left: 0; }
+    .heart::after { left: 25px; top: 0; }
+    .square {
+      width: 50px; height: 50px; 
+      background-color: hsl(200, 70%, 60%);
+      border-radius: 10%;
+    }
+    .star {
+      width: 50px;
+      height: 50px;
+      background: hsl(50, 70%, 60%);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
   </style>
 </head>
 <body>
 
+  <img src="img/biz.jpeg" class="corner-img top-left" alt="biz" />
+  <img src="img/demaki.png" class="corner-img top-right" alt="demaki" />
+  <img src="img/denji.jpeg" class="corner-img bottom-left" alt="denji" />
+  <img src="img/hiaki.jpeg" class="corner-img bottom-right" alt="hiaki" />
+  <img src="img/redenji.png" class="corner-img bottom-center" alt="redenji" />
+
   <div class="container">
     <h1>🎂 ELİİİİİİİİİİİFFFFFFF’in Doğum Günü 🎉</h1>
-    <p class="subtitle">İYİKİ DOĞDUN CANIM💖</p>
-
+    <p>İYİKİ DOĞDUN CANIM 💖</p>
     <button id="celebrateBtn">Kutlamayı Başlat 🎈</button>
 
-    <div id="messageBox" style="display: none;">
+    <div id="messageBox" style="display:none;">
       <h2>💌 Mesajım:</h2>
       <p>
-        İYİKİ DOĞDUN CANIM SENİ ÇOK AMA ÇOK AMA ÇOK SEVİYOM İYKKİ VARSIN
-        off amk niye geldim bu dünyaya yaaa DERKEN SEN ÇIKTIN BİRDEN İYİKİ GELMİŞİM
-        DEDİM SENİNLE TANISTIMYA ÇOK AMA ÇOK MUTLUYUM İYİKİ VARSIN NİCE BERABER SENELERE 💜
+        İYİKİ DOĞDUN CANIM SENİ ÇOK AMA ÇOK AMA ÇOK SEVİYOM 💜<br>
+        DERKEN SEN ÇIKTIN BİRDEN, İYİKİ TANIMIŞIM SENİ 💫
       </p>
     </div>
   </div>
 
-  <!-- Köşe resimleri -->
-  <img src="img/biz.jpeg" class="corner-img top-left" alt="biz">
-  <img src="img/demaki.jpeg" class="corner-img top-right" alt="demaki">
-  <img src="img/denji.jpeg" class="corner-img bottom-left" alt="denji">
-  <img src="img/hiaki.jpeg" class="corner-img bottom-right" alt="hiaki">
-  <img src="img/redenji.png" class="corner-img bottom-center" alt="redenji">
-
-  <!-- Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <!-- JS -->
   <script>
     document.getElementById("celebrateBtn").addEventListener("click", () => {
-      const btn = document.getElementById("celebrateBtn");
-      const msgBox = document.getElementById("messageBox");
-      btn.style.display = "none";
-      msgBox.style.display = "block";
+      document.getElementById("messageBox").style.display = "block";
 
-      // Confetti patlat
-      if (typeof confetti === "function") {
-        confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
-      }
-
-      // Balonlar
-      for (let i = 0; i < 40; i++) {
+      const shapes = ["circle", "heart", "square", "star", "emoji"];
+      for (let i = 0; i < 50; i++) {
         const balloon = document.createElement("div");
-        balloon.className = "balloon";
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        balloon.className = "balloon " + shape;
         balloon.style.left = Math.random() * 100 + "vw";
         balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
         document.body.appendChild(balloon);
