@@ -3,118 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎂 Özel Doğum Günü 🎉</title>
+  <title>🎂 Doğum Günü 🎉</title>
 
   <style>
     body {
+      background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
       text-align: center;
       overflow-x: hidden;
+      color: #444;
     }
 
-    .frame-container {
+    .gallery-container {
       position: relative;
-      width: 90%;
-      max-width: 600px;
-      margin: 100px auto;
+      max-width: 320px;
+      margin: 60px auto 10px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 2;
     }
 
-    .inner-box {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
-      z-index: 10;
-      position: relative;
+    .gallery-container h1 {
+      font-size: 1.3em;
+      margin: 5px 0;
     }
 
-    .inner-box h1 {
-      color: #ff1493;
-      font-size: 1.7em;
+    .gallery-container p {
+      font-size: 0.9em;
       margin-bottom: 10px;
     }
 
-    .inner-box p {
-      font-size: 1.1em;
-      color: #333;
-      margin-top: 5px;
-    }
-
-    .frame-container img {
-      width: 75px;
-      height: 75px;
+    .gallery img {
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       border-radius: 10px;
       position: absolute;
     }
 
-    /* Upper images */
-    .top-left     { top: -50px; left: 0; }
-    .top-center   { top: -50px; left: calc(50% - 37.5px); }
-    .top-right    { top: -50px; right: 0; }
+    /* Üst resimler */
+    .img-top-1 { top: -115px; left: 15px; }
+    .img-top-2 { top: -115px; left: 115px; }
+    .img-top-3 { top: -115px; left: 215px; }
 
-    /* Right images */
-    .right-top    { top: calc(33% - 37.5px); right: -50px; }
-    .right-center { top: calc(50% - 37.5px); right: -50px; }
-    .right-bottom { top: calc(66% - 37.5px); right: -50px; }
+    /* Sağ resimler */
+    .img-right-1 { right: -115px; top: 15px; }
+    .img-right-2 { right: -115px; top: 115px; }
+    .img-right-3 { right: -115px; top: 215px; }
 
-    /* Bottom images */
-    .bottom-left  { bottom: -50px; left: 0; }
-    .bottom-center { bottom: -50px; left: calc(50% - 37.5px); }
-    .bottom-right { bottom: -50px; right: 0; }
+    /* Alt resimler */
+    .img-bottom-1 { bottom: -115px; left: 15px; }
+    .img-bottom-2 { bottom: -115px; left: 115px; }
+    .img-bottom-3 { bottom: -115px; left: 215px; }
 
-    /* Left images */
-    .left-top     { top: calc(33% - 37.5px); left: -50px; }
-    .left-center  { top: calc(50% - 37.5px); left: -50px; }
-    .left-bottom  { top: calc(66% - 37.5px); left: -50px; }
+    /* Sol resimler */
+    .img-left-1 { left: -115px; top: 15px; }
+    .img-left-2 { left: -115px; top: 115px; }
+    .img-left-3 { left: -115px; top: 215px; }
 
-    @media (max-width: 600px) {
-      .frame-container img {
-        width: 55px;
-        height: 55px;
+    @media (max-width: 500px) {
+      .gallery img {
+        width: 80px;
+        height: 80px;
       }
-
-      .top-left, .top-center, .top-right,
-      .right-top, .right-center, .right-bottom,
-      .bottom-left, .bottom-center, .bottom-right,
-      .left-top, .left-center, .left-bottom {
-        transform: scale(0.85);
+      .gallery-container {
+        max-width: 300px;
       }
     }
   </style>
 </head>
 <body>
 
-<div class="frame-container">
+  <div class="gallery">
+    <!-- Üst sıra -->
+    <img src="img/akimeno.jpg" class="img-top-1" />
+    <img src="img/biz.jpeg" class="img-top-2" />
+    <img src="img/uss.jpeg" class="img-top-3" />
 
-  <!-- Images around the box -->
-  <img src="img/akimeno.jpg" alt="1" class="top-left">
-  <img src="img/biz.jpeg" alt="2" class="top-center">
-  <img src="img/uss.jpeg" alt="3" class="top-right">
+    <!-- Sağ sıra -->
+    <img src="img/biziz.jpeg" class="img-right-1" />
+    <img src="img/hiaki.jpeg" class="img-right-2" />
+    <img src="img/denji.jpeg" class="img-right-3" />
 
-  <img src="img/biziz.jpeg" alt="4" class="right-top">
-  <img src="img/hiaki.jpeg" alt="5" class="right-center">
-  <img src="img/denji.jpeg" alt="6" class="right-bottom">
+    <!-- Alt sıra -->
+    <img src="img/demaki.png" class="img-bottom-1" />
+    <img src="img/dereze.jpg" class="img-bottom-2" />
+    <img src="img/akihime.jpeg" class="img-bottom-3" />
 
-  <img src="img/demaki.png" alt="7" class="bottom-left">
-  <img src="img/dereze.jpg" alt="8" class="bottom-center">
-  <img src="img/redenji.png" alt="9" class="bottom-right">
-
-  <img src="img/spr.jpeg" alt="10" class="left-top">
-  <img src="img/PUAHAHA.jpeg" alt="11" class="left-center">
-  <img src="img/akihime.jpeg" alt="12" class="left-bottom">
-
-  <!-- Inner content -->
-  <div class="inner-box">
-    <h1>🎉 ELİF’İN DOĞUM GÜNÜ 🎈</h1>
-    <p>İyi ki Doğdun! Sen benim dünyamı güzelleştiren en özel insansın 💖</p>
-    <p>Birlikte nice mutlu yıllara! 💫</p>
+    <!-- Sol sıra -->
+    <img src="img/redenji.png" class="img-left-1" />
+    <img src="img/spr.jpeg" class="img-left-2" />
+    <img src="img/PUAHAHA.jpeg" class="img-left-3" />
   </div>
 
-</div>
+  <div class="gallery-container">
+    <h1>🎈 Elif'in Doğum Günü 🎂</h1>
+    <p>İyi ki doğdun canım 💖 Çok seviliyosun!</p>
+  </div>
 
 </body>
 </html>
