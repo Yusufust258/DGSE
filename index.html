@@ -1,159 +1,183 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Kutlama Zamanı!</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden; /* Kaydırmayı engeller */
-      background-color: #fefefe;
-      font-family: Arial, sans-serif;
-      touch-action: none; /* Mobilde kaydırmayı engeller */
-      position: fixed; /* Sabit ekranda kalır */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Kutlama Zamanı!</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Kaydırmayı engeller */
+            background-color: #fefefe;
+            font-family: Arial, sans-serif;
+            position: fixed; /* Ekran sabit kalır */
+        }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-    #celebration-box {
-      position: relative;
-      width: min(90vw, 500px);
-      height: min(70vh, 400px);
-      border: 2px solid #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #fff;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      overflow: hidden;
-    }
+        #celebration-box {
+            position: relative;
+            width: min(90vw, 500px);
+            height: min(70vh, 400px);
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
-    #message {
-      display: none;
-      width: 90%;
-      font-size: 14px;
-      text-align: left;
-      white-space: pre-line;
-      line-height: 1.6;
-    }
+        #message {
+            display: none;
+            width: 90%;
+            font-size: 14px;
+            text-align: left;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
 
-    .image-frame {
-      position: absolute;
-      width: min(13vw, 65px);
-      height: min(13vw, 65px);
-      object-fit: cover;
-      border-radius: 6px;
-    }
+        .image-frame {
+            position: absolute;
+            width: min(13vw, 70px);
+            height: min(13vw, 70px);
+            object-fit: cover;
+            border-radius: 6px;
+        }
 
-    /* Üst resimler */
-    .top { top: -7vw; }
-    .bottom { bottom: -7vw; }
-    .left { left: -7vw; }
-    .right { right: -7vw; }
+        .top { top: -6vw; }
+        .bottom { bottom: -6vw; }
+        .left { left: -6vw; }
+        .right { right: -6vw; }
 
-    #startButton {
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #ff6f61;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      z-index: 2;
-    }
+        #startButton {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            z-index: 2;
+        }
 
-    /* Balonlar */
-    .balloon {
-      position: absolute;
-      width: 40px;
-      height: 55px;
-      border-radius: 50%;
-      background: hsl(calc(360 * var(--i) / 12), 60%, 55%);
-      opacity: 0.6; /* Mat görünüm */
-      bottom: -100px;
-      animation: floatUp 6s ease-in-out infinite;
-      filter: brightness(0.9) saturate(0.8);
-    }
+        /* Balonlar */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 55px;
+            border-radius: 50%;
+            background: hsl(calc(360 * var(--i) / 12), 60%, 55%);
+            opacity: 0.6; /* Mat hale getirildi */
+            bottom: -100px;
+            animation: floatUp 6s ease-in-out infinite;
+            filter: brightness(0.9) saturate(0.8);
+        }
 
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 0.8; }
-      100% { transform: translateY(-800px); opacity: 0; }
-    }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 0.8; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
 
-    /* Mobil uyumlu hale getir */
-    @media (max-width: 600px) {
-      .image-frame {
-        width: 12vw;
-        height: 12vw;
-      }
-      #message {
-        font-size: 12px;
-      }
-    }
-  </style>
+        /* Konfeti */
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            opacity: 0.9;
+            top: -10px;
+            animation: fall 4s linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(720deg); }
+        }
+
+        @media (max-width: 600px) {
+            .image-frame {
+                width: 12vw;
+                height: 12vw;
+            }
+            #message {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div id="celebration-box">
-    <p id="message">
-      SENİ COOOOOOOOOOOK SEVİYOM COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM
-      SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN
-      HEP BOYLE GECSIN SEN YOKKEN ben niye geldim dünyaya yaa SEN GELDİĞİNDE İYİKİ GELMİŞİ DÜNYAYA OLEEEEEEEEY
-      İYİKİ ELİFLE TANIŞMIM SENİ COOOOOOOOOOOK AMA COOOOOOOOOOOK SVYM ASKM IYIKI VARSN BERBAER MUTLU EĞLENCEECELİ
-      SENELEREEEEEEEEEEEEEEEEEEEEEE💖
-    </p>
-  </div>
+    <div id="celebration-box">
+        <p id="message">SENİ COOOOOOOOOOOK SEVİYOM COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM
+        SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN
+        HEP BOYLE GECSIN SEN YOKKEN ben niye geldim dünyaya yaa SEN GELDİĞİNDE İYİKİ GELMİŞİ DÜNYAYA OLEEEEEEEEY
+        İYİKİ ELİFLE TANIŞMIM SENİ COOOOOOOOOOOK AMA COOOOOOOOOOOK SVYM ASKM IYIKI VARSN BERBAER MUTLU EĞLENCEECELİ
+        SENELEREEEEEEEEEEEEEEEEEEEEEE💖</p>
+    </div>
 
-  <!-- Kenarlara resimler -->
-  <img src="akimeno.jpg" class="image-frame top" style="left: 10%;" />
-  <img src="biz.jpeg" class="image-frame top" style="left: 38%;" />
-  <img src="uss.jpeg" class="image-frame top" style="left: 66%;" />
+    <!-- Kenarlara resimler -->
+    <img src="akimeno.jpg" class="image-frame top" style="left: 10%;" />
+    <img src="biz.jpeg" class="image-frame top" style="left: 38%;" />
+    <img src="uss.jpeg" class="image-frame top" style="left: 66%;" />
 
-  <img src="biziz.jpeg" class="image-frame bottom" style="left: 10%;" />
-  <img src="hiaki.jpeg" class="image-frame bottom" style="left: 38%;" />
-  <img src="denji.jpeg" class="image-frame bottom" style="left: 66%;" />
+    <img src="biziz.jpeg" class="image-frame bottom" style="left: 10%;" />
+    <img src="hiaki.jpeg" class="image-frame bottom" style="left: 38%;" />
+    <img src="denji.jpeg" class="image-frame bottom" style="left: 66%;" />
 
-  <img src="demaki.png" class="image-frame left" style="top: 10%;" />
-  <img src="dereze.jpg" class="image-frame left" style="top: 38%;" />
-  <img src="akihime.jpeg" class="image-frame left" style="top: 66%;" />
+    <img src="demaki.png" class="image-frame left" style="top: 10%;" />
+    <img src="dereze.jpg" class="image-frame left" style="top: 38%;" />
+    <img src="akihime.jpeg" class="image-frame left" style="top: 66%;" />
 
-  <img src="redenji.png" class="image-frame right" style="top: 10%;" />
-  <img src="spr.jpeg" class="image-frame right" style="top: 38%;" />
-  <img src="PUAHAHA.jpeg" class="image-frame right" style="top: 66%;" />
+    <img src="redenji.png" class="image-frame right" style="top: 10%;" />
+    <img src="spr.jpeg" class="image-frame right" style="top: 38%;" />
+    <img src="PUAHAHA.jpeg" class="image-frame right" style="top: 66%;" />
 
-  <button id="startButton">Kutlamayı Başlat 🎉</button>
+    <button id="startButton">Kutlamayı Başlat 🎉</button>
 
-  <script>
-    const startButton = document.getElementById("startButton");
-    const message = document.getElementById("message");
+    <script>
+        const startButton = document.getElementById("startButton");
+        const message = document.getElementById("message");
 
-    startButton.onclick = () => {
-      message.style.display = "block";
-      createBalloons();
-    };
+        startButton.onclick = () => {
+            message.style.display = "block";
+            createBalloons();
+            createConfetti();
+        };
 
-    function createBalloons() {
-      for (let i = 0; i < 20; i++) {
-        const balloon = document.createElement("div");
-        balloon.classList.add("balloon");
-        balloon.style.setProperty('--i', i);
-        balloon.style.left = Math.random() * 100 + 'vw';
-        document.body.appendChild(balloon);
-        setTimeout(() => balloon.remove(), 6000);
-      }
-    }
-  </script>
+        function createBalloons() {
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                balloon.style.setProperty('--i', i);
+                balloon.style.left = Math.random() * 100 + 'vw';
+                document.body.appendChild(balloon);
+                setTimeout(() => balloon.remove(), 6000);
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6f61', '#f7dc6f', '#85c1e9', '#bb8fce', '#58d68d', '#f1948a'];
+            for (let i = 0; i < 70; i++) {
+                const conf = document.createElement("div");
+                conf.classList.add("confetti");
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.animationDelay = (Math.random() * 2) + 's';
+                conf.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 4500);
+            }
+        }
+    </script>
 
 </body>
 </html>
