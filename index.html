@@ -3,162 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎂 Arkadaşının Doğum Günü 🎉</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>🎂 Doğum Günü Kutlaması 🎉</title>
 
   <style>
     body {
       background: linear-gradient(135deg, #f3a4ff, #ffb6e6);
       font-family: 'Poppins', sans-serif;
-      color: #fff;
+      color: #000;
       text-align: center;
       margin: 0;
       overflow-x: hidden;
+      padding: 30px;
     }
 
-    .container {
-      margin: 50px auto 20px;
-      max-width: 500px;
+    /* Kutunun ana tasarımı */
+    .frame {
+      max-width: 400px;
+      margin: 50px auto;
+      border: 8px solid transparent;
       padding: 20px;
       background-color: #fff;
-      border-radius: 20px;
-      color: #000;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      position: relative;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 5px;
-      color: #ff1493;
+    .message {
+      font-size: 1.2em;
+      line-height: 1.5em;
     }
 
-    button {
-      background-color: #ff66cc;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 12px 25px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.3s;
-      margin: 15px 0;
+    /* Görsellerin çerçeve olarak yerleşimi */
+    .frame::before, .frame::after, .left-frame, .right-frame {
+      content: "";
+      position: absolute;
+      display: flex;
+      gap: 5px;
     }
 
-    button:hover {
-      background-color: #e055b8;
+    /* Üst görseller */
+    .frame::before {
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      justify-content: space-between;
     }
 
-    #messageBox {
-      margin-top: 20px;
-      display: none;
+    /* Alt görseller */
+    .frame::after {
+      bottom: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      justify-content: space-between;
     }
 
-    #messageBox h2 {
-      margin-bottom: 10px;
-      color: #ff1493;
+    /* Sol görseller */
+    .left-frame {
+      top: 0;
+      left: -70px;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
     }
 
-    #imageGallery {
-      margin: 30px auto;
-      display: none;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
+    /* Sağ görseller */
+    .right-frame {
+      top: 0;
+      right: -70px;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
     }
 
-    #imageGallery img {
-      width: 70px;
-      height: 70px;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 1.4em;
-      }
-      button {
-        width: 100%;
-      }
-      #imageGallery img {
-        width: 60px;
-        height: 60px;
-      }
-    }
-
-    .balloon {
-      position: fixed;
-      bottom: -120px;
-      width: 40px;
+    /* Görsel kutuları */
+    .frame img {
+      width: 60px;
       height: 60px;
-      border-radius: 50%;
-      animation: rise 8s linear infinite;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
 
-    @keyframes rise {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
+    /* Mobil uyum */
+    @media (max-width: 500px) {
+      .frame img {
+        width: 45px;
+        height: 45px;
+      }
+      .frame {
+        margin-top: 120px;
+      }
+      .frame::before, .frame::after {
+        top: -50px;
+        bottom: -50px;
+      }
+      .left-frame, .right-frame {
+        left: -55px;
+        right: -55px;
+      }
     }
+
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>🎂 ELİİİİİİİİİİİFFFFFFF’in Doğum Günü 🎉</h1>
-    <p>İYİKİ DOĞDUN CANIM 💖</p>
-
-    <button id="celebrateBtn">Kutlamayı Başlat 🎈</button>
-
-    <div id="messageBox">
-      <h2>💌 Mesajım</h2>
-      <p>
-        İYİKİ DOĞDUN CANIM SENİ ÇOK AMA ÇOK AMA ÇOK SEVİYOM İYKKİ VARSIN!
-        YAA NEDEN GELDİM BU DÜNYAYA DERKEN SEN ÇIKTIN!
-        İYİKİ VARSIN, NİCE GÜZEL SENELERE 💜
-      </p>
+  <!-- Görsel çerçeve -->
+  <div class="frame">
+    <div class="left-frame">
+      <img src="img/img9.jpg">
+      <img src="img/img10.jpg">
+      <img src="img/img11.jpg">
+    </div>
+    <div class="right-frame">
+      <img src="img/redenji.png">
+      <img src="img/img7.jpg">
+      <img src="img/img8.jpg">
     </div>
 
-    <div id="imageGallery">
-      <img src="img/biz.jpeg" alt="biz">
-      <img src="img/demaki.jpeg" alt="demaki">
-      <img src="img/denji.jpeg" alt="denji">
-      <img src="img/hiaki.jpeg" alt="hiaki">
-      <img src="img/redenji.png" alt="redenji">
-    </div>
+    <h1>🎉 DOĞUM GÜNÜN KUTLU OLSUN ELİF 💖</h1>
+    <p class="message">
+      İyi ki doğdun canım benim! 🎂<br>
+      Hayatımı güzelleştiren muhteşem bir insansın...<br>
+      Hep birlikte nice güzel senelere 💫
+    </p>
   </div>
 
-  <!-- Confetti Kütüphanesi -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <!-- JS -->
+  <!-- Üst ve alt görseller (4'er tane) -->
   <script>
-    document.getElementById("celebrateBtn").addEventListener("click", () => {
-      document.getElementById("celebrateBtn").style.display = "none";
-      document.getElementById("messageBox").style.display = "block";
-      document.getElementById("imageGallery").style.display = "flex";
+    const frame = document.querySelector('.frame');
+    const topImages = ['biz.jpeg', 'demaki.png', 'denji.jpeg', 'hiaki.jpeg'];
+    const bottomImages = ['img12.jpg', 'img11.jpg', 'img10.jpg', 'img9.jpg'];
 
-      // Konfeti
-      confetti({
-        particleCount: 2000,
-        spread: 100,
-        origin: { x: 0.5, y: 0.6 }
-      });
+    const createRow = (imgs) => {
+      return imgs.map(src => `<img src="img/${src}">`).join('');
+    };
 
-      // Mat balonlar
-      for (let i = 0; i < 30; i++) {
-        const balloon = document.createElement("div");
-        balloon.className = "balloon";
-        balloon.style.left = Math.random() * 100 + "vw";
-        balloon.style.width = (20 + Math.random() * 40) + "px";
-        balloon.style.height = (35 + Math.random() * 60) + "px";
-        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 40%, 60%)`; // Mat renkler
-        document.body.appendChild(balloon);
-        setTimeout(() => balloon.remove(), 8000);
-      }
-    });
+    frame.style.setProperty('--top-frame', createRow(topImages));
+    frame.style.setProperty('--bottom-frame', createRow(bottomImages));
+
+    const before = document.createElement("div");
+    before.innerHTML = createRow(topImages);
+    before.style.position = "absolute";
+    before.style.top = "-70px";
+    before.style.left = "50%";
+    before.style.transform = "translateX(-50%)";
+    before.style.display = "flex";
+    before.style.gap = "5px";
+    frame.appendChild(before);
+
+    const after = document.createElement("div");
+    after.innerHTML = createRow(bottomImages);
+    after.style.position = "absolute";
+    after.style.bottom = "-70px";
+    after.style.left = "50%";
+    after.style.transform = "translateX(-50%)";
+    after.style.display = "flex";
+    after.style.gap = "5px";
+    frame.appendChild(after);
   </script>
 
 </body>
