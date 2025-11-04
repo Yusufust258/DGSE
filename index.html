@@ -104,24 +104,18 @@
     .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
 
     /* Sağ */
-    .r1{
+    .r1, .r2{
       right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      top:calc(50% - var);
     }
-    .r2{
-      right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      bottom:calc(50% - var);
-    }
+    .r1{ top:calc(50% - var(--image-size)/2); }
+    .r2{ bottom:calc(50% - var(--image-size)/2); }
 
     /* Sol */
-    .l1{
+    .l1, .l2{
       left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      top:calc(50% - var);
     }
-    .l2{
-      left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      bottom:calc(50% - var);
-    }
+    .l1{ top:calc(50% - var(--image-size)/2); }
+    .l2{ bottom:calc(50% - var(--image-size)/2); }
 
     /* Balonlar */
     .balloon{
@@ -203,7 +197,7 @@
       intro.style.display="none";
       msg.style.display="flex";
 
-      // Balonlar (sayısı artırıldı 25)
+      // Balonlar (sayısı artırıldı)
       for(let i=0;i<80;i++){
         const b=document.createElement('div');
         b.className='balloon';
@@ -217,7 +211,7 @@
         document.body.appendChild(b);
       }
 
-      // Konfetiler (sayısı artırıldı 120)
+      // Konfetiler (sayısı artırıldı)
       for(let i=0;i<800;i++){
         const c=document.createElement('div');
         c.className='confetti';
