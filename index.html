@@ -10,7 +10,7 @@
       --frame-h: 300px;
       --card-border-radius: 18px;
       --image-size: 55px;
-      --edge-offset: 0px;
+      --gap: 5px; /* kutuya olan mesafe */
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{
@@ -23,6 +23,8 @@
       font-family:"Poppins",sans-serif;
       position:relative;
     }
+
+    /* Kart */
     .card{
       width:var(--frame-w);
       height:var(--frame-h);
@@ -30,16 +32,15 @@
       border-radius:var(--card-border-radius);
       box-shadow:0 10px 25px rgba(0,0,0,0.18);
       position:relative;
-      padding:15px;
       text-align:center;
       z-index:5;
-      transition: all .4s ease;
+      padding:15px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
     }
-    .card h1{
-      font-size:18px;
-      color:#d6009a;
-      margin-bottom:6px;
-    }
+
     .message{
       font-size:13px;
       line-height:1.4;
@@ -48,7 +49,19 @@
       overflow-y:auto;
       padding-right:5px;
       transition: opacity .4s ease;
+      text-align:center;
     }
+
+    #intro{
+      font-size:15px;
+      font-weight:600;
+      color:#d6009a;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
     .btn{
       position:absolute;
       bottom:12px;
@@ -65,6 +78,7 @@
       z-index:6;
     }
 
+    /* Görseller */
     img.edge{
       width:var(--image-size);
       height:var(--image-size);
@@ -76,49 +90,39 @@
       transition:all .6s ease;
     }
 
-    /* Üst resimler */
-    .t1{top:-30px;left:calc(50% - 150px);}
-    .t2{top:-30px;left:calc(50% - 85px);}
-    .t3{top:-30px;left:calc(50% - 20px);}
-    .t4{top:-30px;left:calc(50% + 45px);}
+    /* Üstteki görseller */
+    .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 150px);}
+    .t2{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 85px);}
+    .t3{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 20px);}
+    .t4{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 45px);}
 
-    /* Alt resimler */
-    .b1{bottom:-30px;left:calc(50% - 150px);}
-    .b2{bottom:-30px;left:calc(50% - 85px);}
-    .b3{bottom:-30px;left:calc(50% - 20px);}
-    .b4{bottom:-30px;left:calc(50% + 45px);}
+    /* Alttaki görseller */
+    .b1{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 150px);}
+    .b2{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 85px);}
+    .b3{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 20px);}
+    .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 45px);}
 
-    /* Köşe resimleri */
+    /* Sağ ve sol köşeler */
     .r1{
-      right: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      top: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(25deg);
-    } 
+      right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      top:calc(50% - var(--frame-h)/2 + 10px);
+      transform:rotate(15deg);
+    }
     .r2{
-      right: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      bottom: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(-25deg);
+      right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      bottom:calc(50% - var(--frame-h)/2 + 10px);
+      transform:rotate(-15deg);
     }
     .l1{
-      left: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      top: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(-25deg);
+      left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      top:calc(50% - var(--frame-h)/2 + 10px);
+      transform:rotate(-15deg);
     }
     .l2{
-      left: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      bottom: calc(var(--card-border-radius) - var(--image-size) / 2 + var(--edge-offset));
-      transform: rotate(25deg);
+      left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      bottom:calc(50% - var(--frame-h)/2 + 10px);
+      transform:rotate(15deg);
     }
-
-    /* Tüm görseller yaklaşınca */
-    .close-in .edge{
-      transform: scale(0.85);
-      filter: brightness(1.1);
-    }
-    .close-in .l1{ left: 10px; top: 10px; transform: rotate(0deg) scale(0.85);}
-    .close-in .l2{ left: 10px; bottom: 10px; transform: rotate(0deg) scale(0.85);}
-    .close-in .r1{ right: 10px; top: 10px; transform: rotate(0deg) scale(0.85);}
-    .close-in .r2{ right: 10px; bottom: 10px; transform: rotate(0deg) scale(0.85);}
 
     /* Balonlar */
     .balloon{
@@ -153,35 +157,38 @@
     @media (max-width:480px){
       :root{
         --frame-w: 300px;
-        --frame-h: 280px;
+        --frame-h: 270px;
         --image-size: 50px;
       }
-      .close-in .l1, .close-in .r1{ top: 5px; }
-      .close-in .l2, .close-in .r2{ bottom: 5px; }
-      .close-in .l1, .close-in .l2{ left: 5px; }
-      .close-in .r1, .close-in .r2{ right: 5px; }
+      .t1{left:calc(50% - 130px);}
+      .t4{left:calc(50% + 30px);}
+      .b1{left:calc(50% - 130px);}
+      .b4{left:calc(50% + 30px);}
     }
   </style>
 </head>
 <body>
 
-  <!-- Fotoğraflar -->
+  <!-- Görseller (kutunun etrafında sabit) -->
   <img src="img/akimeno.jpg" class="edge t1">
   <img src="img/biz.jpeg" class="edge t2">
   <img src="img/uss.jpeg" class="edge t3">
   <img src="img/hiaki.jpeg" class="edge t4">
+
   <img src="img/biziz.jpeg" class="edge r1">
   <img src="img/denji.jpeg" class="edge r2">
+
   <img src="img/demaki.png" class="edge b1">
   <img src="img/dereze.jpg" class="edge b2">
   <img src="img/akihime.jpeg" class="edge b3">
   <img src="img/spr.jpeg" class="edge b4">
+
   <img src="img/redenji.png" class="edge l1">
   <img src="img/PUAHAHA.jpeg" class="edge l2">
 
   <!-- Kart -->
   <div class="card">
-    <div id="intro" class="message" style="font-size:15px;font-weight:600;color:#d6009a;">
+    <div id="intro">
       💗💗💗💗 İYİKİ DOĞDUN CANIM BENİM SENİ ÇOK SEEVİYORUM 💗💗💗💗
     </div>
 
@@ -199,7 +206,6 @@
     function showMessage(){
       document.getElementById("intro").style.display="none";
       document.getElementById("msg").style.display="block";
-      document.body.classList.add("close-in");
 
       // Balonlar
       for(let i=0;i<12;i++){
