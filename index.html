@@ -1,78 +1,85 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>🎂 Doğum Günü 🎉</title>
   <style>
     :root{
       --frame-w: 340px;
       --frame-h: 320px;
+      --card-border-radius: 18px;
       --image-size: 55px;
-      --gap: 25px;
+      --gap: 25px; /* kutudan uzaklık */
     }
-
     *{box-sizing:border-box;margin:0;padding:0;}
     body{
+      overflow:hidden;
       height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
       background:linear-gradient(135deg,#f3a4ff,#ffb6e6);
       font-family:"Poppins",sans-serif;
-      overflow:hidden;
       position:relative;
     }
 
+    /* KART */
     .card{
       width:var(--frame-w);
       height:var(--frame-h);
       background:#fff;
-      border-radius:18px;
+      border-radius:var(--card-border-radius);
       box-shadow:0 10px 25px rgba(0,0,0,0.18);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
+      position:relative;
       text-align:center;
       z-index:5;
+      padding:20px 15px 45px 15px; /* buton için altta boşluk */
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
     }
 
-    #intro, #msg{
+    #intro{
       font-size:15px;
+      font-weight:600;
       color:#d6009a;
       text-align:center;
       display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:10px;
+      height:100%;
     }
 
     #msg{
-      color:#333;
       font-size:13px;
-      max-height:230px;
+      line-height:1.5;
+      color:#333;
+      text-align:center;
+      max-height:230px; /* mesaj alanını büyüttük */
       overflow-y:auto;
       display:none;
       padding:5px 10px;
     }
 
     .btn{
-      margin-top:15px;
+      position:absolute;
+      bottom:10px;
+      right:50%;
+      transform:translateX(50%);
       background:#ff66cc;
       color:#fff;
       border:0;
-      padding:8px 15px;
+      padding:7px 13px;
       border-radius:18px;
       cursor:pointer;
       font-size:13px;
       font-weight:600;
-      transition:background .3s ease;
+      z-index:6;
     }
-    .btn:hover{background:#ff4cb3;}
 
+    /* GÖRSELLER */
     img.edge{
       width:var(--image-size);
       height:var(--image-size);
@@ -81,7 +88,6 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
       position:absolute;
       z-index:10;
-      transform:rotate(0deg);
     }
 
     /* Üst */
@@ -97,14 +103,30 @@
     .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
 
     /* Sağ */
-    .r1{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 60px);}
-    .r2{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 60px);}
+    .r1{
+      right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      top:calc(50% - 80px);
+      transform:rotate(15deg);
+    }
+    .r2{
+      right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      bottom:calc(50% - 80px);
+      transform:rotate(-15deg);
+    }
 
     /* Sol */
-    .l1{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 60px);}
-    .l2{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 60px);}
+    .l1{
+      left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      top:calc(50% - 80px);
+      transform:rotate(-15deg);
+    }
+    .l2{
+      left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
+      bottom:calc(50% - 80px);
+      transform:rotate(15deg);
+    }
 
-    /* Balonlar */
+    /* BALONLAR */
     .balloon{
       position:fixed;
       bottom:-80px;
@@ -116,27 +138,29 @@
       to{transform:translateY(-110vh);}
     }
 
-    /* Konfeti */
+    /* KONFETİ */
     .confetti{
       position:fixed;
       width:6px;
       height:10px;
       top:-10px;
+      background:#ff66cc;
       opacity:.8;
       z-index:3;
-      animation:confetti 10s linear infinite;
+      animation:confetti 5s linear infinite;
     }
     @keyframes confetti{
       0%{transform:translateY(0) rotate(0);}
       100%{transform:translateY(100vh) rotate(360deg);}
     }
 
+    /* Mobil uyum */
     @media (max-width:480px){
       :root{
-        --frame-w:300px;
-        --frame-h:290px;
-        --image-size:48px;
-        --gap:18px;
+        --frame-w: 300px;
+        --frame-h: 290px;
+        --image-size: 48px;
+        --gap: 18px;
       }
     }
   </style>
@@ -167,10 +191,10 @@
     </div>
 
     <div id="msg">
-      SENİ COOOOOOOOOOOK VEE SANA COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM SENLEYKEN COOOOOOK MUTLU OLUYOM<br><br>
-      SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN CANIM BENİM<br><br>
+      SENİ COOOOOOOOOOOK SEVİYOM COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM<br><br>
+      SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN<br><br>
       HEP BOYLE GECSIN SEN YOKKEN ben niye geldim dünyaya yaa SEN GELDİĞİNDE İYİKİ GELMİŞİ DÜNYAYA OLEEEEEEEEY<br><br>
-      İYİKİ SENİNLE TANIŞMIM SENİ COOOOOOOOOOOK AMA COOOOOOOOOOOK SVYM ASKM IYIKI VARSN HEEP YANINDA OLCAM BERBAER MUTLU EĞLENCEECELİ SENELEREEEEEEEEEEEEEE💗💗💗💗
+      İYİKİ ELİFLE TANIŞMIM SENİ COOOOOOOOOOOK AMA COOOOOOOOOOOK SVYM ASKM IYIKI VARSN BERBAER MUTLU EĞLENCEECELİ SENELEREEEEEEEEEEEEEEEEEEEEEE💖
     </div>
 
     <button class="btn" onclick="showMessage()">Kutlamayı Başlat 🎉</button>
@@ -179,31 +203,29 @@
   <script>
     function showMessage(){
       document.getElementById("intro").style.display="none";
-      document.getElementById("msg").style.display="flex";
+      document.getElementById("msg").style.display="block";
 
-      // Balonlar (sayıyı artırabilirsin)
-      for(let i=0;i<80;i++){
+      // Balonlar
+      for(let i=0;i<12;i++){
         const b=document.createElement('div');
         b.className='balloon';
-        const size=30+Math.random()*50;
-        b.style.width=size+'px';
-        b.style.height=size*1.3+'px';
-        b.style.borderRadius=`${40+Math.random()*20}% ${40+Math.random()*20}% / ${50+Math.random()*25}% ${50+Math.random()*25}%`;
+        const size = 35 + Math.random()*35;
+        b.style.width = size+'px';
+        b.style.height = size*1.3+'px';
+        b.style.borderRadius = `${40+Math.random()*20}% ${40+Math.random()*20}% / ${50+Math.random()*25}% ${50+Math.random()*25}%`;
         b.style.left=Math.random()*95+'%';
-        b.style.background=['#ff5f8f','#ffb347','#89cff0','#b19cd9','#9eff9e','#ffd700'][i%6];
+        b.style.background=['#ff5f8f','#ffb347','#89cff0','#b19cd9','#9eff9e'][i%5];
         b.style.animationDelay=(Math.random()*3)+'s';
         document.body.appendChild(b);
       }
 
-      // Konfetiler (sayıyı artırabilirsin)
-      for(let i=0;i<800;i++){
+      // Konfetiler
+      for(let i=0;i<50;i++){
         const c=document.createElement('div');
         c.className='confetti';
-        c.style.left=Math.random()*100+'%';
-        c.style.background=['#ff66cc','#ffb347','#89cff0','#b19cd9','#9eff9e','#ffd700'][i%6];
+        c.style.left=Math.random()*95+'%';
+        c.style.background=['#ff66cc','#ffb347','#89cff0','#b19cd9','#9eff9e'][i%5];
         c.style.animationDelay=(Math.random()*3)+'s';
-        c.style.width=(4+Math.random()*4)+'px';
-        c.style.height=(8+Math.random()*6)+'px';
         document.body.appendChild(c);
       }
     }
