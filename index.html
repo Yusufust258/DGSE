@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🎂 Doğum Günü 🎉</title>
 <style>
@@ -103,12 +103,16 @@ img.edge{
 .b4{bottom:-80px; left:calc(50% + 55px);}
 
 /* Sağ */
-.r1{right:-80px; top:90px;}
-.r2{right:-80px; top:180px;}
+.r1{right:-80px; top:20px;}
+.r2{right:-80px; top:100px;}
+.r3{right:-80px; top:180px;}
+.r4{right:-80px; top:260px;}
 
 /* Sol */
-.l1{left:-80px; top:90px;}
-.l2{left:-80px; top:180px;}
+.l1{left:-80px; top:20px;}
+.l2{left:-80px; top:100px;}
+.l3{left:-80px; top:180px;}
+.l4{left:-80px; top:260px;}
 
 /* Balonlar */
 .balloon{
@@ -158,6 +162,8 @@ img.edge{
 
 <img src="img/biziz.jpeg" class="edge r1">
 <img src="img/denji.jpeg" class="edge r2">
+<img src="img/denji2.jpg" class="edge r3">
+<img src="img/denji3.jpg" class="edge r4">
 
 <img src="img/demaki.png" class="edge b1">
 <img src="img/dereze.jpg" class="edge b2">
@@ -166,6 +172,8 @@ img.edge{
 
 <img src="img/redenji.png" class="edge l1">
 <img src="img/PUAHAHA.jpeg" class="edge l2">
+<img src="img/l3.jpg" class="edge l3">
+<img src="img/l4.jpg" class="edge l4">
 
 <!-- Kart -->
 <div class="card">
@@ -185,10 +193,8 @@ img.edge{
 
 <script>
 function showMessage(){
-  const intro = document.getElementById("intro");
-  const msg = document.getElementById("msg");
-  intro.style.display="none";
-  msg.style.display="flex";
+  document.getElementById("intro").style.display="none";
+  document.getElementById("msg").style.display="flex";
 
   // Balonlar
   for(let i=0;i<80;i++){
@@ -205,7 +211,7 @@ function showMessage(){
   }
 
   // Konfetiler
-  for(let i=0;i<800;i++){
+  for(let i=0;i<120;i++){
     const c=document.createElement('div');
     c.className='confetti';
     c.style.left=Math.random()*100+'%';
