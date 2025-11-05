@@ -9,41 +9,22 @@
       --frame-w: 340px;
       --frame-h: 320px;
       --card-border-radius: 18px;
-      --image-size: 55px; /* karelerin ve görsellerin boyutu */
+      --image-size: 55px;
       --gap: 25px;
-      --light-square: rgba(255,255,255,0.12);
-      --dark-square: rgba(0,0,0,0.06);
     }
     *{box-sizing:border-box;margin:0;padding:0;}
-
     body{
       overflow:hidden;
       height:100vh;
-      width:100vw;
       display:flex;
       align-items:center;
       justify-content:center;
-      /* orijinal pembe-mor gradient korunuyor */
-      background: linear-gradient(135deg,#f3a4ff,#ffb6e6);
+      background:linear-gradient(135deg,#f3a4ff,#ffb6e6);
       font-family:"Poppins",sans-serif;
       position:relative;
     }
 
-    /* KARE ızgara konumu: tüm ekrana yayılır, z-index 0 */
-    .checker {
-      position:absolute;
-      inset:0;
-      display:grid;
-      z-index:0;
-      pointer-events:none; /* tıklamayı engelleme */
-    }
-    .checker .sq {
-      width:var(--image-size);
-      height:var(--image-size);
-      box-sizing:border-box;
-    }
-
-    /* KART (aynı kaldı, z-index yüksek) */
+    /* KART */
     .card{
       width:var(--frame-w);
       height:var(--frame-h);
@@ -95,11 +76,10 @@
       font-size:13px;
       font-weight:600;
       transition:background .3s ease;
-      z-index:6;
     }
     .btn:hover{background:#ff4cb3;}
 
-    /* Görseller (aynı konumlar) */
+    /* Görseller */
     img.edge{
       width:var(--image-size);
       height:var(--image-size);
@@ -108,19 +88,22 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
       position:absolute;
       z-index:10;
+      transform:rotate(0deg);
     }
 
-    /* konumlar */
+    /* Üst */
     .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .t2{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .t3{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .t4{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
 
+    /* Alt */
     .b1{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .b2{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .b3{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
 
+    /* Sağ */
     .r1{
       right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
       top:calc(50% - 80px);
@@ -130,6 +113,7 @@
       bottom:calc(50% - 80px);
     }
 
+    /* Sol */
     .l1{
       left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
       top:calc(50% - 80px);
@@ -139,38 +123,79 @@
       bottom:calc(50% - 80px);
     }
 
-    /* Balon ve konfeti (aynı) */
-    .balloon{ position:fixed; bottom:-80px; opacity:.9; z-index:2; animation:floatUp 10s linear infinite; }
-    @keyframes floatUp{ to{transform:translateY(-110vh);} }
-    .confetti{ position:fixed; width:6px; height:10px; top:-10px; opacity:.8; z-index:3; animation:confetti 5s linear infinite; }
-    @keyframes confetti{ 0%{transform:translateY(0) rotate(0);} 100%{transform:translateY(100vh) rotate(360deg);} }
+    /* Balonlar */
+    .balloon{
+      position:fixed;
+      bottom:-80px;
+      opacity:.9;
+      z-index:2;
+      animation:floatUp 10s linear infinite;
+    }
+    @keyframes floatUp{
+      to{transform:translateY(-110vh);}
+    }
 
+    /* Konfeti */
+    .confetti{
+      position:fixed;
+      width:6px;
+      height:10px;
+      top:-10px;
+      opacity:.8;
+      z-index:3;
+      animation:confetti 5s linear infinite;
+    }
+    @keyframes confetti{
+      0%{transform:translateY(0) rotate(0);}
+      100%{transform:translateY(100vh) rotate(360deg);}
+    }
+
+    /* ✅ EK EKLEDİM — AYICIKLAR */
+    .bear{
+      position:absolute;
+      width:45px;
+      height:45px;
+      object-fit:contain;
+      transform:rotate(-15deg);
+      animation:bearMove 8s linear infinite;
+      z-index:3;
+      opacity:1;
+    }
+
+    @keyframes bearMove{
+      0%{transform:translateY(120vh) rotate(-15deg);}
+      100%{transform:translateY(-120vh) rotate(-15deg);}
+    }
+
+    /* Mobil uyum */
     @media (max-width:480px){
-      :root{ --frame-w:300px; --frame-h:290px; --image-size:48px; --gap:18px; }
+      :root{
+        --frame-w: 300px;
+        --frame-h: 290px;
+        --image-size: 48px;
+        --gap: 18px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- KARE ızgara: JS ile doldurulacak -->
-  <div class="checker" id="checker"></div>
-
   <!-- Görseller -->
-  <img src="img/akihim.jpg"     class="edge t1" alt="">
-  <img src="img/akihime.jpg"    class="edge t2" alt="">
-  <img src="img/akihimeno.jpg"  class="edge t3" alt="">
-  <img src="img/hiaki.jpeg"     class="edge t4" alt="">
+  <img src="img/akihim.jpg" class="edge t1">
+  <img src="img/akihime.jpg" class="edge t2">
+  <img src="img/akihimeno.jpg" class="edge t3">
+  <img src="img/hiaki.jpeg" class="edge t4">
 
-  <img src="img/akimeno.jpg"    class="edge r1" alt="">
-  <img src="img/biziz.jpeg"     class="edge r2" alt="">
+  <img src="img/akimeno.jpg" class="edge r1">
+  <img src="img/biziz.jpeg" class="edge r2">
 
-  <img src="img/bleb.jpg"       class="edge b1" alt="">
-  <img src="img/hakime.jpg"     class="edge b2" alt="">
-  <img src="img/himaki.jpg"     class="edge b3" alt="">
-  <img src="img/spr.jpeg"       class="edge b4" alt="">
+  <img src="img/bleb.jpg" class="edge b1">
+  <img src="img/hakime.jpg" class="edge b2">
+  <img src="img/himaki.jpg" class="edge b3">
+  <img src="img/spr.jpeg" class="edge b4">
 
-  <img src="img/biz.jpeg"       class="edge l1" alt="">
-  <img src="img/himenoaki.jpg"  class="edge l2" alt="">
+  <img src="img/biz.jpeg" class="edge l1">
+  <img src="img/himenoaki.jpg" class="edge l2">
 
   <!-- Kart -->
   <div class="card">
@@ -189,68 +214,27 @@
   </div>
 
   <script>
-    // Checkerboard oluşturma: kare boyutu görsellerle aynı (CSS variable)
-    (function createChecker(){
-      const checker = document.getElementById('checker');
-      const root = getComputedStyle(document.documentElement);
-      let square = parseInt(root.getPropertyValue('--image-size')) || 55;
-
-      function build(){
-        // clear
-        checker.innerHTML = '';
-        // columns & rows hesapla - tam kare doldurma
-        const cols = Math.ceil(window.innerWidth / square);
-        const rows = Math.ceil(window.innerHeight / square);
-
-        // set grid template
-        checker.style.display = 'grid';
-        checker.style.gridTemplateColumns = `repeat(${cols}, ${square}px)`;
-        checker.style.gridTemplateRows = `repeat(${rows}, ${square}px)`;
-
-        // doldur
-        for(let r=0;r<rows;r++){
-          for(let c=0;c<cols;c++){
-            const div = document.createElement('div');
-            div.className = 'sq';
-            // açık/koyu dönüşümü (satır+kol sütun toplamına göre)
-            const isDark = ((r + c) % 2 === 0);
-            div.style.background = isDark ? 'var(--dark-square)' : 'var(--light-square)';
-            checker.appendChild(div);
-          }
-        }
-      }
-
-      // yeniden boyutlandırma durumunda tekrar kur
-      window.addEventListener('resize', () => {
-        // read updated --image-size in case mobile media query changed it
-        const root2 = getComputedStyle(document.documentElement);
-        square = parseInt(root2.getPropertyValue('--image-size')) || square;
-        build();
-      });
-
-      build();
-    })();
-
-    // Mevcut showMessage fonksiyonu (aynı)
     function showMessage(){
-      const intro=document.getElementById("intro");
-      const msg=document.getElementById("msg");
+      const intro = document.getElementById("intro");
+      const msg = document.getElementById("msg");
       intro.style.display="none";
       msg.style.display="flex";
 
+      // Balonlar
       for(let i=0;i<90;i++){
         const b=document.createElement('div');
         b.className='balloon';
-        const size=30+Math.random()*50;
-        b.style.width=size+'px';
-        b.style.height=size*1.3+'px';
-        b.style.borderRadius=`${40+Math.random()*20}% ${40+Math.random()*20}% / ${50+Math.random()*25}% ${50+Math.random()*25}%`;
+        const size = 30 + Math.random()*50;
+        b.style.width = size+'px';
+        b.style.height = size*1.3+'px';
+        b.style.borderRadius = `${40+Math.random()*20}% ${40+Math.random()*20}% / ${50+Math.random()*25}% ${50+Math.random()*25}%`;
         b.style.left=Math.random()*95+'%';
         b.style.background=['#ff5f8f','#ffb347','#89cff0','#b19cd9','#9eff9e','#ffd700'][i%6];
         b.style.animationDelay=(Math.random()*3)+'s';
         document.body.appendChild(b);
       }
 
+      // Konfetiler
       for(let i=0;i<800;i++){
         const c=document.createElement('div');
         c.className='confetti';
@@ -262,6 +246,20 @@
         document.body.appendChild(c);
       }
     }
+
+    // ✅ EKLEDİM — AYICIKLAR
+    function spawnBears(){
+      const count = 13;
+      for(let i=0;i<count;i++){
+        const img=document.createElement('img');
+        img.src="img/ayicik.png";
+        img.className="bear";
+        img.style.left=(i * 7 + 8) + "%";
+        img.style.animationDelay=(Math.random()*6)+"s";
+        document.body.appendChild(img);
+      }
+    }
+    spawnBears();
   </script>
 
 </body>
