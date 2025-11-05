@@ -4,47 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>🎂 Doğum Günü 🎉</title>
-
   <style>
     :root{
       --frame-w: 340px;
       --frame-h: 320px;
       --card-border-radius: 18px;
-      --image-size: 55px;
+      --image-size: 55px; /* karelerin ve görsellerin boyutu */
       --gap: 25px;
+      --light-square: rgba(255,255,255,0.12);
+      --dark-square: rgba(0,0,0,0.06);
     }
     *{box-sizing:border-box;margin:0;padding:0;}
 
     body{
       overflow:hidden;
       height:100vh;
+      width:100vw;
       display:flex;
       align-items:center;
       justify-content:center;
-
-      /* ✅ Kareli grid arkaplan */
-      background:
-      repeating-linear-gradient(
-        0deg,
-        #ffffff 0px,
-        #ffffff 22px,
-        #f5f5f5 22px,
-        #f5f5f5 44px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        #ffffff 0px,
-        #ffffff 22px,
-        #f5f5f5 22px,
-        #f5f5f5 44px
-      );
-
-      background-size: 44px 44px;
+      /* orijinal pembe-mor gradient korunuyor */
+      background: linear-gradient(135deg,#f3a4ff,#ffb6e6);
       font-family:"Poppins",sans-serif;
       position:relative;
     }
 
-    /* KART */
+    /* KARE ızgara konumu: tüm ekrana yayılır, z-index 0 */
+    .checker {
+      position:absolute;
+      inset:0;
+      display:grid;
+      z-index:0;
+      pointer-events:none; /* tıklamayı engelleme */
+    }
+    .checker .sq {
+      width:var(--image-size);
+      height:var(--image-size);
+      box-sizing:border-box;
+    }
+
+    /* KART (aynı kaldı, z-index yüksek) */
     .card{
       width:var(--frame-w);
       height:var(--frame-h);
@@ -96,10 +95,11 @@
       font-size:13px;
       font-weight:600;
       transition:background .3s ease;
+      z-index:6;
     }
     .btn:hover{background:#ff4cb3;}
 
-    /* Görseller */
+    /* Görseller (aynı konumlar) */
     img.edge{
       width:var(--image-size);
       height:var(--image-size);
@@ -108,22 +108,19 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
       position:absolute;
       z-index:10;
-      transform:rotate(0deg);
     }
 
-    /* ÜST */
+    /* konumlar */
     .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .t2{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .t3{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .t4{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
 
-    /* ALT */
     .b1{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .b2{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .b3{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
 
-    /* SAĞ */
     .r1{
       right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
       top:calc(50% - 80px);
@@ -133,7 +130,6 @@
       bottom:calc(50% - 80px);
     }
 
-    /* SOL */
     .l1{
       left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
       top:calc(50% - 80px);
@@ -143,62 +139,38 @@
       bottom:calc(50% - 80px);
     }
 
-    /* BALON */
-    .balloon{
-      position:fixed;
-      bottom:-80px;
-      opacity:.9;
-      z-index:2;
-      animation:floatUp 10s linear infinite;
-    }
-    @keyframes floatUp{
-      to{transform:translateY(-110vh);}
-    }
+    /* Balon ve konfeti (aynı) */
+    .balloon{ position:fixed; bottom:-80px; opacity:.9; z-index:2; animation:floatUp 10s linear infinite; }
+    @keyframes floatUp{ to{transform:translateY(-110vh);} }
+    .confetti{ position:fixed; width:6px; height:10px; top:-10px; opacity:.8; z-index:3; animation:confetti 5s linear infinite; }
+    @keyframes confetti{ 0%{transform:translateY(0) rotate(0);} 100%{transform:translateY(100vh) rotate(360deg);} }
 
-    /* CONFETTI */
-    .confetti{
-      position:fixed;
-      width:6px;
-      height:10px;
-      top:-10px;
-      opacity:.8;
-      z-index:3;
-      animation:confetti 5s linear infinite;
+    @media (max-width:480px){
+      :root{ --frame-w:300px; --frame-h:290px; --image-size:48px; --gap:18px; }
     }
-    @keyframes confetti{
-      0%{transform:translateY(0) rotate(0);}
-      100%{transform:translateY(100vh) rotate(360deg);}
-    }
-
-    @media(max-width:480px){
-      :root{
-        --frame-w: 300px;
-        --frame-h: 290px;
-        --image-size: 48px;
-        --gap: 18px;
-      }
-    }
-
   </style>
 </head>
 <body>
 
+  <!-- KARE ızgara: JS ile doldurulacak -->
+  <div class="checker" id="checker"></div>
+
   <!-- Görseller -->
-  <img src="img/akihim.jpg"     class="edge t1">
-  <img src="img/akihime.jpg"    class="edge t2">
-  <img src="img/akihimeno.jpg"  class="edge t3">
-  <img src="img/hiaki.jpeg"     class="edge t4">
+  <img src="img/akihim.jpg"     class="edge t1" alt="">
+  <img src="img/akihime.jpg"    class="edge t2" alt="">
+  <img src="img/akihimeno.jpg"  class="edge t3" alt="">
+  <img src="img/hiaki.jpeg"     class="edge t4" alt="">
 
-  <img src="img/akimeno.jpg"    class="edge r1">
-  <img src="img/biziz.jpeg"     class="edge r2">
+  <img src="img/akimeno.jpg"    class="edge r1" alt="">
+  <img src="img/biziz.jpeg"     class="edge r2" alt="">
 
-  <img src="img/bleb.jpg"       class="edge b1">
-  <img src="img/hakime.jpg"     class="edge b2">
-  <img src="img/himaki.jpg"     class="edge b3">
-  <img src="img/spr.jpeg"       class="edge b4">
+  <img src="img/bleb.jpg"       class="edge b1" alt="">
+  <img src="img/hakime.jpg"     class="edge b2" alt="">
+  <img src="img/himaki.jpg"     class="edge b3" alt="">
+  <img src="img/spr.jpeg"       class="edge b4" alt="">
 
-  <img src="img/biz.jpeg"       class="edge l1">
-  <img src="img/himenoaki.jpg"  class="edge l2">
+  <img src="img/biz.jpeg"       class="edge l1" alt="">
+  <img src="img/himenoaki.jpg"  class="edge l2" alt="">
 
   <!-- Kart -->
   <div class="card">
@@ -217,6 +189,49 @@
   </div>
 
   <script>
+    // Checkerboard oluşturma: kare boyutu görsellerle aynı (CSS variable)
+    (function createChecker(){
+      const checker = document.getElementById('checker');
+      const root = getComputedStyle(document.documentElement);
+      let square = parseInt(root.getPropertyValue('--image-size')) || 55;
+
+      function build(){
+        // clear
+        checker.innerHTML = '';
+        // columns & rows hesapla - tam kare doldurma
+        const cols = Math.ceil(window.innerWidth / square);
+        const rows = Math.ceil(window.innerHeight / square);
+
+        // set grid template
+        checker.style.display = 'grid';
+        checker.style.gridTemplateColumns = `repeat(${cols}, ${square}px)`;
+        checker.style.gridTemplateRows = `repeat(${rows}, ${square}px)`;
+
+        // doldur
+        for(let r=0;r<rows;r++){
+          for(let c=0;c<cols;c++){
+            const div = document.createElement('div');
+            div.className = 'sq';
+            // açık/koyu dönüşümü (satır+kol sütun toplamına göre)
+            const isDark = ((r + c) % 2 === 0);
+            div.style.background = isDark ? 'var(--dark-square)' : 'var(--light-square)';
+            checker.appendChild(div);
+          }
+        }
+      }
+
+      // yeniden boyutlandırma durumunda tekrar kur
+      window.addEventListener('resize', () => {
+        // read updated --image-size in case mobile media query changed it
+        const root2 = getComputedStyle(document.documentElement);
+        square = parseInt(root2.getPropertyValue('--image-size')) || square;
+        build();
+      });
+
+      build();
+    })();
+
+    // Mevcut showMessage fonksiyonu (aynı)
     function showMessage(){
       const intro=document.getElementById("intro");
       const msg=document.getElementById("msg");
