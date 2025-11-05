@@ -12,7 +12,6 @@
       --image-size: 55px;
       --gap: 25px;
     }
-
     *{box-sizing:border-box;margin:0;padding:0;}
 
     body{
@@ -21,28 +20,27 @@
       display:flex;
       align-items:center;
       justify-content:center;
+
+      /* ✅ KARELİ GRID BACKGROUND */
+      background:
+        repeating-linear-gradient(
+          0deg,
+          #ffffff 0px,
+          #ffffff 48px,
+          #f2f2f2 48px,
+          #f2f2f2 96px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          #ffffff 0px,
+          #ffffff 48px,
+          #f2f2f2 48px,
+          #f2f2f2 96px
+        );
+      background-size:96px 96px;
+
       font-family:"Poppins",sans-serif;
       position:relative;
-      background:linear-gradient(135deg,#f3a4ff,#ffb6e6);
-    }
-
-    /* ✅ Kareli arka plan */
-    .bg-grid{
-      position:absolute;
-      inset:0;
-      display:grid;
-      grid-template-columns:repeat(7,1fr);
-      grid-template-rows:repeat(5,1fr);
-      z-index:1;
-      pointer-events:none;
-    }
-    .bg-grid div{
-      border:1px solid rgba(255,255,255,0.18);
-      background:rgba(255,255,255,0.10);
-      backdrop-filter:blur(1px);
-    }
-    .bg-grid div:nth-child(even){
-      background:rgba(0,0,0,0.10);
     }
 
     /* KART */
@@ -171,7 +169,7 @@
       100%{transform:translateY(100vh) rotate(360deg);}
     }
 
-    /* Mobil */
+    /* Mobil uyum */
     @media (max-width:480px){
       :root{
         --frame-w: 300px;
@@ -183,16 +181,6 @@
   </style>
 </head>
 <body>
-
-  <!-- ✅ Kareli Arka Plan -->
-  <div class="bg-grid">
-    <!-- 7x5 = 35 kutu -->
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-  </div>
 
   <!-- Görseller -->
   <img src="img/akihim.jpg" class="edge t1">
@@ -234,6 +222,7 @@
       intro.style.display="none";
       msg.style.display="flex";
 
+      // Balonlar
       for(let i=0;i<90;i++){
         const b=document.createElement('div');
         b.className='balloon';
@@ -247,18 +236,9 @@
         document.body.appendChild(b);
       }
 
+      // Konfetiler
       for(let i=0;i<800;i++){
         const c=document.createElement('div');
         c.className='confetti';
         c.style.left=Math.random()*100+'%';
-        c.style.background=['#ff66cc','#ffb347','#89cff0','#b19cd9','#9eff9e','#ffd700'][i%6];
-        c.style.animationDelay=(Math.random()*3)+'s';
-        c.style.width=(4+Math.random()*4)+'px';
-        c.style.height=(8+Math.random()*6)+'px';
-        document.body.appendChild(c);
-      }
-    }
-  </script>
-
-</body>
-</html>
+        c.style.background=['#ff66cc','#ffb347','#]()
