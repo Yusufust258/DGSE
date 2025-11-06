@@ -22,6 +22,13 @@
       background:linear-gradient(135deg,#f3a4ff,#ffb6e6);
       font-family:"Poppins",sans-serif;
       position:relative;
+
+      /* 🌸 Mor kareli doku eklendi */
+      background-image:
+        linear-gradient(90deg, rgba(238,160,255,0.3) 50%, transparent 50%),
+        linear-gradient(rgba(238,160,255,0.3) 50%, transparent 50%);
+      background-size: 35px 35px;
+      background-blend-mode: overlay;
     }
 
     /* KART */
@@ -91,39 +98,19 @@
       transform:rotate(0deg);
     }
 
-    /* Üst */
     .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .t2{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .t3{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .t4{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
-
-    /* Alt */
     .b1{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .b2{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .b3{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
+    .r1{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 80px);}
+    .r2{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 80px);}
+    .l1{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 80px);}
+    .l2{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 80px);}
 
-    /* Sağ */
-    .r1{
-      right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      top:calc(50% - 80px);
-    }
-    .r2{
-      right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      bottom:calc(50% - 80px);
-    }
-
-    /* Sol */
-    .l1{
-      left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      top:calc(50% - 80px);
-    }
-    .l2{
-      left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap));
-      bottom:calc(50% - 80px);
-    }
-
-    /* Balonlar */
     .balloon{
       position:fixed;
       bottom:-80px;
@@ -135,7 +122,6 @@
       to{transform:translateY(-110vh);}
     }
 
-    /* Konfeti */
     .confetti{
       position:fixed;
       width:6px;
@@ -150,7 +136,6 @@
       100%{transform:translateY(100vh) rotate(360deg);}
     }
 
-    /* ✅ EK EKLEDİM — AYICIKLAR */
     .bear{
       position:absolute;
       width:45px;
@@ -167,7 +152,6 @@
       100%{transform:translateY(-120vh) rotate(-15deg);}
     }
 
-    /* Mobil uyum */
     @media (max-width:480px){
       :root{
         --frame-w: 300px;
@@ -185,57 +169,49 @@
   <img src="img/akihime.jpg" class="edge t2">
   <img src="img/akihimeno.jpg" class="edge t3">
   <img src="img/hiaki.jpeg" class="edge t4">
-
   <img src="img/akimeno.jpg" class="edge r1">
   <img src="img/biziz.jpeg" class="edge r2">
-
   <img src="img/bleb.jpg" class="edge b1">
   <img src="img/hakime.jpg" class="edge b2">
   <img src="img/himaki.jpg" class="edge b3">
   <img src="img/spr.jpeg" class="edge b4">
-
   <img src="img/biz.jpeg" class="edge l1">
   <img src="img/himenoaki.jpg" class="edge l2">
 
-  <!-- Kart -->
   <div class="card">
     <div id="intro">
       💗💗💗💗 İYİKİ DOĞDUN CANIM BENİM SENİ ÇOK SEEVİYORUM 💗💗💗💗
     </div>
-
     <div id="msg">
       SENİ COOOOOOOOOOOK SEVİYORUM VEE SANA COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM SENLEYKEN COOOOOOK MUTLU OLUYOM<br><br>
       SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN CANIM BENİM<br><br>
       HEP BÖYLE MUTLU GÜZEL EĞLENCELİ HARİKA GECSIN SEN YOKKEN ben niye geldim dünyaya yaa SEN GELDİĞİNDE İYİKİ GELMİŞİ DÜNYAYA OLEEEEEEEEY<br><br>
       İYİKİ SENİNLE TANIŞMIM SENİ COOOOOOOOOOOK AMA COOOOOOOOOOK SVYM ASKM IYIKI VARSN HEEP YANINDA OLCAM BERBAER MUTLU EĞLENCEECELİ SENELEREEEEEEEEEEEEEEEEEEEEEE💗💗💗💗
     </div>
-
     <button class="btn" onclick="showMessage()">Bukadaroldu🎉</button>
   </div>
 
   <script>
     function showMessage(){
-      const intro = document.getElementById("intro");
-      const msg = document.getElementById("msg");
+      const intro=document.getElementById("intro");
+      const msg=document.getElementById("msg");
       intro.style.display="none";
       msg.style.display="flex";
 
-      // Balonlar
       for(let i=0;i<90;i++){
         const b=document.createElement('div');
         b.className='balloon';
-        const size = 30 + Math.random()*50;
-        b.style.width = size+'px';
-        b.style.height = size*1.3+'px';
-        b.style.borderRadius = `${40+Math.random()*20}% ${40+Math.random()*20}% / ${50+Math.random()*25}% ${50+Math.random()*25}%`;
+        const size=30+Math.random()*50;
+        b.style.width=size+'px';
+        b.style.height=size*1.3+'px';
+        b.style.borderRadius=`${40+Math.random()*20}% ${40+Math.random()*20}% / ${50+Math.random()*25}% ${50+Math.random()*25}%`;
         b.style.left=Math.random()*95+'%';
         b.style.background=['#ff5f8f','#ffb347','#89cff0','#b19cd9','#9eff9e','#ffd700'][i%6];
         b.style.animationDelay=(Math.random()*3)+'s';
         document.body.appendChild(b);
       }
 
-      // Konfetiler
-      for(let i=0;i<800;i++){
+      for(let i=0;i<600;i++){
         const c=document.createElement('div');
         c.className='confetti';
         c.style.left=Math.random()*100+'%';
@@ -247,14 +223,13 @@
       }
     }
 
-    // ✅ EKLEDİM — AYICIKLAR
     function spawnBears(){
-      const count = 13;
+      const count=13;
       for(let i=0;i<count;i++){
         const img=document.createElement('img');
-        img.src="img/ayicik.png";
+        img.src="img/yicik.png";
         img.className="bear";
-        img.style.left=(i * 7 + 8) + "%";
+        img.style.left=(i*7+8)+"%";
         img.style.animationDelay=(Math.random()*6)+"s";
         document.body.appendChild(img);
       }
