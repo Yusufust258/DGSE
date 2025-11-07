@@ -7,33 +7,33 @@
   <style>
     :root{
       --frame-w: 340px;
-      --frame-h: auto;
+      --frame-h: 400px; /* 🔥 320 yerine 400 yaptık */
       --card-border-radius: 18px;
       --image-size: 55px;
       --gap: 25px;
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{
-      overflow-x:hidden;
-      min-height:100vh;
+      overflow:hidden;
+      height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      flex-direction:column;
       background:linear-gradient(135deg,#f3a4ff,#ffb6e6);
       font-family:"Poppins",sans-serif;
       position:relative;
+
+      /* 🌸 Mor kareli doku */
       background-image:
-        linear-gradient(90deg, rgba(238,160,255,0.25) 50%, transparent 50%),
-        linear-gradient(rgba(238,160,255,0.25) 50%, transparent 50%);
+        linear-gradient(90deg, rgba(238,160,255,0.3) 50%, transparent 50%),
+        linear-gradient(rgba(238,160,255,0.3) 50%, transparent 50%);
       background-size: 35px 35px;
       background-blend-mode: overlay;
     }
 
-    /* KART */
     .card{
       width:var(--frame-w);
-      min-height:320px;
+      height:var(--frame-h);
       background:#fff;
       border-radius:var(--card-border-radius);
       box-shadow:0 10px 25px rgba(0,0,0,0.18);
@@ -45,10 +45,8 @@
       flex-direction:column;
       justify-content:center;
       align-items:center;
-      gap:10px;
     }
 
-    /* Mesajlar */
     #intro, #msg{
       font-size:15px;
       color:#d6009a;
@@ -57,19 +55,20 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
+      gap:10px;
+      height:auto;
       line-height:1.5;
     }
 
     #msg{
       color:#333;
       font-size:13px;
+      max-height:300px; /* daha uzun yazı için biraz büyüttüm */
+      overflow-y:auto;
       display:none;
       padding:5px 10px;
-      max-height:230px;
-      overflow-y:auto; /* Kaydırma aktif */
     }
 
-    /* Buton */
     .btn{
       margin-top:15px;
       background:#ff66cc;
@@ -84,7 +83,6 @@
     }
     .btn:hover{background:#ff4cb3;}
 
-    /* Görseller */
     img.edge{
       width:var(--image-size);
       height:var(--image-size);
@@ -93,7 +91,6 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
       position:absolute;
       z-index:10;
-      transform:rotate(0deg);
     }
 
     .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
@@ -153,7 +150,7 @@
     @media (max-width:480px){
       :root{
         --frame-w: 300px;
-        --frame-h: auto;
+        --frame-h: 350px;
         --image-size: 48px;
         --gap: 18px;
       }
@@ -225,7 +222,7 @@
       const count=13;
       for(let i=0;i<count;i++){
         const img=document.createElement('img');
-        img.src="img/ayicik.png";
+        img.src="img/yicik.png";
         img.className="bear";
         img.style.left=(i*7+8)+"%";
         img.style.animationDelay=(Math.random()*6)+"s";
