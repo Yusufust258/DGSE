@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>🎂 Doğum Günü 🎉</title>
   <style>
+    /* 💗 Great Vibes fontu eklendi */
+    @font-face {
+      font-family: 'GreatVibes';
+      src: url('fonts/GreatVibes-Regular.ttf') format('truetype');
+    }
+
     :root{
       --frame-w: 340px;
-      --frame-h: 400px; /* 🔥 320 yerine 400 yaptık */
+      --frame-h: 400px; /* mesaj kutusu biraz büyütüldü */
       --card-border-radius: 18px;
       --image-size: 55px;
       --gap: 25px;
@@ -22,8 +28,6 @@
       background:linear-gradient(135deg,#f3a4ff,#ffb6e6);
       font-family:"Poppins",sans-serif;
       position:relative;
-
-      /* 🌸 Mor kareli doku */
       background-image:
         linear-gradient(90deg, rgba(238,160,255,0.3) 50%, transparent 50%),
         linear-gradient(rgba(238,160,255,0.3) 50%, transparent 50%);
@@ -48,8 +52,6 @@
     }
 
     #intro, #msg{
-      font-size:15px;
-      color:#d6009a;
       text-align:center;
       display:flex;
       flex-direction:column;
@@ -60,6 +62,14 @@
       line-height:1.5;
     }
 
+    /* 💌 Butondan önceki mesaj için Great Vibes fontu */
+    #intro{
+      font-family: 'GreatVibes', cursive;
+      font-size:26px;
+      color:#d6009a;
+      text-shadow:1px 1px 3px rgba(255,0,200,0.2);
+    }
+
     #msg{
       color:#333;
       font-size:13px;
@@ -67,9 +77,7 @@
       overflow-y:auto;
       display:none;
       padding:5px 10px;
-      justify-content:flex-start; 
-      align-items:flex-start;
-   }
+    }
 
     .btn{
       margin-top:15px;
@@ -93,6 +101,7 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
       position:absolute;
       z-index:10;
+      transform:rotate(0deg);
     }
 
     .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
@@ -152,7 +161,7 @@
     @media (max-width:480px){
       :root{
         --frame-w: 300px;
-        --frame-h: 350px;
+        --frame-h: 360px;
         --image-size: 48px;
         --gap: 18px;
       }
@@ -177,7 +186,8 @@
 
   <div class="card">
     <div id="intro">
-      💗💗💗💗 İYİKİ DOĞDUN CANIM BENİM SENİ ÇOK SEEVİYORUM 💗💗💗💗
+      💗💗💗💗 İYİKİ DOĞDUN CANIM BENİM 💗💗💗💗<br>
+      SENİ ÇOK SEEVİYORUM 💕
     </div>
     <div id="msg">
       SENİ COOOOOOOOOOOK SEVİYORUM VEE SANA COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM SENLEYKEN COOOOOOK MUTLU OLUYOM<br><br>
@@ -195,7 +205,7 @@
       intro.style.display="none";
       msg.style.display="flex";
 
-      for(let i=0;i<80;i++){
+      for(let i=0;i<90;i++){
         const b=document.createElement('div');
         b.className='balloon';
         const size=30+Math.random()*50;
@@ -208,7 +218,7 @@
         document.body.appendChild(b);
       }
 
-      for(let i=0;i<700;i++){
+      for(let i=0;i<600;i++){
         const c=document.createElement('div');
         c.className='confetti';
         c.style.left=Math.random()*100+'%';
