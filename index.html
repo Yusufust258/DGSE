@@ -4,16 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>🎂 Doğum Günü 🎉</title>
-  <style>
-    /* 💗 Great Vibes fontu eklendi */
-    @font-face {
-      font-family: 'GreatVibes';
-      src: url('fonts/GreatVibes-Regular.ttf') format('truetype');
-    }
 
+  <!-- 💖 Great Vibes font bağlantısı -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
     :root{
       --frame-w: 340px;
-      --frame-h: 400px; /* mesaj kutusu biraz büyütüldü */
+      --frame-h: 400px; /* mesaj kutusunu büyüttüm */
       --card-border-radius: 18px;
       --image-size: 55px;
       --gap: 25px;
@@ -51,23 +49,13 @@
       align-items:center;
     }
 
-    #intro, #msg{
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      height:auto;
-      line-height:1.5;
-    }
-
-    /* 💌 Butondan önceki mesaj için Great Vibes fontu */
+    /* 🎀 Font sadece intro için */
     #intro{
-      font-family: 'GreatVibes', cursive;
-      font-size:26px;
+      font-family:"Great Vibes", cursive;
+      font-size:28px;
       color:#d6009a;
-      text-shadow:1px 1px 3px rgba(255,0,200,0.2);
+      text-align:center;
+      line-height:1.5;
     }
 
     #msg{
@@ -157,15 +145,6 @@
       0%{transform:translateY(120vh) rotate(-15deg);}
       100%{transform:translateY(-120vh) rotate(-15deg);}
     }
-
-    @media (max-width:480px){
-      :root{
-        --frame-w: 300px;
-        --frame-h: 360px;
-        --image-size: 48px;
-        --gap: 18px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -186,15 +165,16 @@
 
   <div class="card">
     <div id="intro">
-      💗💗💗💗 İYİKİ DOĞDUN CANIM BENİM 💗💗💗💗<br>
-      SENİ ÇOK SEEVİYORUM 💕
+      💗💗💗💗 İYİKİ DOĞDUN CANIM BENİM SENİ ÇOK SEEVİYORUM 💗💗💗💗
     </div>
+
     <div id="msg">
       SENİ COOOOOOOOOOOK SEVİYORUM VEE SANA COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM SENLEYKEN COOOOOOK MUTLU OLUYOM<br><br>
       SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN CANIM BENİM<br><br>
       HEP BÖYLE MUTLU GÜZEL EĞLENCELİ HARİKA GECSIN SEN YOKKEN ben niye geldim dünyaya yaa SEN GELDİĞİNDE İYİKİ GELMİŞİ DÜNYAYA OLEEEEEEEEY<br><br>
       İYİKİ SENİNLE TANIŞMIM SENİ COOOOOOOOOOOK AMA COOOOOOOOOOK SVYM ASKM IYIKI VARSN HEEP YANINDA OLCAM BERBAER MUTLU EĞLENCEECELİ SENELEREEEEEEEEEEEEEEEEEEEEEE💗💗💗💗
     </div>
+
     <button class="btn" onclick="showMessage()">Bukadaroldu🎉</button>
   </div>
 
@@ -203,7 +183,7 @@
       const intro=document.getElementById("intro");
       const msg=document.getElementById("msg");
       intro.style.display="none";
-      msg.style.display="flex";
+      msg.style.display="block";
 
       for(let i=0;i<90;i++){
         const b=document.createElement('div');
@@ -243,6 +223,5 @@
     }
     spawnBears();
   </script>
-
 </body>
 </html>
