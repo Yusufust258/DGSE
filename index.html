@@ -32,7 +32,6 @@
       background-blend-mode: overlay;
     }
 
-    /* === ŞERİT (AKAN GÖRSELLER) === */
     .strip{
       position:fixed;
       bottom:0;
@@ -40,7 +39,7 @@
       height:100%;
       display:flex;
       flex-direction:column;
-      animation:flow 10s linear infinite; /* 🔥 hız arttı (10s) */
+      animation:flow 6s linear infinite; 
       z-index:2;
       opacity:0.9;
     }
@@ -57,24 +56,20 @@
       display:flex;
       flex-direction:column;
     }
-
-    /* 🔁 Akış artık yukarıdan aşağıya */
+    
     @keyframes flow{
       0%   { transform:translateY(-50%); }
       100% { transform:translateY(0); }
     }
 
-    /* soldaki şerit: kutunun ORTASINDAN geçiyor */
     #strip-left {
       left:calc(50% - var(--frame-w)/2 + 30px);
     }
 
-    /* sağdaki şerit: kutunun ORTASINDAN geçiyor */
     #strip-right {
       right:calc(50% - var(--frame-w)/2 + 30px);
     }
 
-    /* === BEYAZ KART === */
     .card{
       width:var(--frame-w);
       height:var(--frame-h);
@@ -178,7 +173,6 @@
 </head>
 <body>
 
-  <!-- SOLDAN AKAN ŞERİT -->
   <div id="strip-left" class="strip">
     <div class="strip-inner">
       <img src="img/a1.jpg">
@@ -196,7 +190,6 @@
     </div>
   </div>
 
-  <!-- SAĞDAN AKAN ŞERİT -->
   <div id="strip-right" class="strip">
     <div class="strip-inner">
       <img src="img/b1.jpg">
@@ -214,7 +207,6 @@
     </div>
   </div>
 
-  <!-- SABİT RESİMLER -->
   <img src="img/akihim.jpg" class="edge t1">
   <img src="img/akihime.jpg" class="edge t2">
   <img src="img/akihimeno.jpg" class="edge t3">
