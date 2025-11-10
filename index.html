@@ -35,13 +35,13 @@
     /* === ŞERİT (AKAN GÖRSELLER) === */
     .strip{
       position:fixed;
-      top:0;
-      width:90px; /* biraz genişletildi ki kartın ortasından net geçsin */
+      bottom:0;
+      width:90px;
       height:100%;
       display:flex;
       flex-direction:column;
-      animation:flow 20s linear infinite;
-      z-index:2; /* kartın arkasında */
+      animation:flow 10s linear infinite; /* 🔥 hız arttı (10s) */
+      z-index:2;
       opacity:0.9;
     }
 
@@ -50,7 +50,7 @@
       height:80px;
       object-fit:cover;
       border-radius:10px;
-      margin-bottom:25px; /* 🔥 boşluk artırıldı */
+      margin-bottom:25px;
     }
 
     .strip-inner {
@@ -58,17 +58,18 @@
       flex-direction:column;
     }
 
+    /* 🔁 Akış artık yukarıdan aşağıya */
     @keyframes flow{
-      0%   { transform:translateY(0); }
-      100% { transform:translateY(-50%); }
+      0%   { transform:translateY(-50%); }
+      100% { transform:translateY(0); }
     }
 
-    /* soldaki şerit artık kartın ORTASINDAN geçiyor */
+    /* soldaki şerit: kutunun ORTASINDAN geçiyor */
     #strip-left {
       left:calc(50% - var(--frame-w)/2 + 30px);
     }
 
-    /* sağdaki şerit de kartın ORTASINDAN geçiyor */
+    /* sağdaki şerit: kutunun ORTASINDAN geçiyor */
     #strip-right {
       right:calc(50% - var(--frame-w)/2 + 30px);
     }
