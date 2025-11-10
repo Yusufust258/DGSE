@@ -31,7 +31,6 @@
       background-size: 35px 35px;
       background-blend-mode: overlay;
     }
-
     .strip{
       position:fixed;
       bottom:0;
@@ -39,9 +38,15 @@
       height:100%;
       display:flex;
       flex-direction:column;
-      animation:flow 6s linear infinite; 
+      overflow:hidden;
       z-index:2;
       opacity:0.9;
+    }
+
+    .strip-inner {
+      display:flex;
+      flex-direction:column;
+      animation:flow 6s linear infinite;
     }
 
     .strip img{
@@ -52,23 +57,14 @@
       margin-bottom:25px;
     }
 
-    .strip-inner {
-      display:flex;
-      flex-direction:column;
-    }
-    
     @keyframes flow{
-      0%   { transform:translateY(-50%); }
-      100% { transform:translateY(0); }
+      0% { transform:translateY(0); }
+      100% { transform:translateY(-50%); }
     }
+/
+    #strip-left { left:calc(50% - var(--frame-w)/2 + 30px); }
 
-    #strip-left {
-      left:calc(50% - var(--frame-w)/2 + 30px);
-    }
-
-    #strip-right {
-      right:calc(50% - var(--frame-w)/2 + 30px);
-    }
+    #strip-right { right:calc(50% - var(--frame-w)/2 + 30px); }
 
     .card{
       width:var(--frame-w);
@@ -172,7 +168,7 @@
   </style>
 </head>
 <body>
-
+  
   <div id="strip-left" class="strip">
     <div class="strip-inner">
       <img src="img/a1.jpg">
