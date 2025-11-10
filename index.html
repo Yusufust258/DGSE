@@ -11,7 +11,7 @@
   <style>
     :root{
       --frame-w: 340px;
-      --frame-h: 400px; /* mesaj kutusunu büyüttüm */
+      --frame-h: 400px;
       --card-border-radius: 18px;
       --image-size: 55px;
       --gap: 25px;
@@ -33,6 +33,44 @@
       background-blend-mode: overlay;
     }
 
+    /* === BEYAZ KART ARKASINDAN AKAN ŞERİT === */
+
+    .strip{
+      position:fixed;
+      top:0;
+      width:60px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      animation:flow 10s linear infinite;
+      z-index:2;     /* kartın arkasında */
+      opacity:0.9;
+    }
+
+    .strip img{
+      width:100%;
+      height:80px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+
+    @keyframes flow{
+      0%   { transform:translateY(-100%); }
+      100% { transform:translateY(100%); }
+    }
+
+    /* solda */
+    #strip-left {
+      left: calc(50% - var(--frame-w)/2 - 80px);
+    }
+
+    /* sağda */
+    #strip-right {
+      right: calc(50% - var(--frame-w)/2 - 80px);
+    }
+    
+    /* === BEYAZ KART === */
     .card{
       width:var(--frame-w);
       height:var(--frame-h);
@@ -65,10 +103,9 @@
       overflow-y:auto;
       display:none;
       padding:20px 15px 25px 15px;
-      box-sizing: border-box;
-      margin-top: 15px;
-      text-align: center;
-   }
+      margin-top:15px;
+      text-align:center;
+    }
 
     .btn{
       margin-top:15px;
@@ -84,6 +121,7 @@
     }
     .btn:hover{background:#ff4cb3;}
 
+    /* KENARLARDAKİ SABİTLER */
     img.edge{
       width:var(--image-size);
       height:var(--image-size);
@@ -92,22 +130,25 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.18);
       position:absolute;
       z-index:10;
-      transform:rotate(0deg);
     }
 
     .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .t2{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .t3{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .t4{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
+
     .b1{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
     .b2{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
     .b3{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
     .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
+
     .r1{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 80px);}
     .r2{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 80px);}
+
     .l1{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 80px);}
     .l2{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 80px);}
 
+    /* BALON + KONFETİ */
     .balloon{
       position:fixed;
       bottom:-80px;
@@ -132,27 +173,31 @@
       0%{transform:translateY(0) rotate(0);}
       100%{transform:translateY(100vh) rotate(360deg);}
     }
-
-    .bear{
-      position:absolute;
-      width:45px;
-      height:45px;
-      object-fit:contain;
-      transform:rotate(-15deg);
-      animation:bearMove 8s linear infinite;
-      z-index:3;
-      opacity:1;
-    }
-
-    @keyframes bearMove{
-      0%{transform:translateY(120vh) rotate(-15deg);}
-      100%{transform:translateY(-120vh) rotate(-15deg);}
-    }
   </style>
 </head>
 <body>
 
-  <!-- Görseller -->
+  <!-- SOLDAN AKAN ŞERİT -->
+  <div id="strip-left" class="strip">
+    <img src="img/a1.jpg">
+    <img src="img/a2.jpg">
+    <img src="img/a3.jpg">
+    <img src="img/a4.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a6.jpg">
+  </div>
+
+  <!-- SAĞDAN AKAN ŞERİT -->
+  <div id="strip-right" class="strip">
+    <img src="img/b1.jpg">
+    <img src="img/b2.jpg">
+    <img src="img/b3.jpg">
+    <img src="img/b4.jpg">
+    <img src="img/b5.jpg">
+    <img src="img/b6.jpg">
+  </div>
+
+  <!-- SABİT RESİMLER -->
   <img src="img/akihim.jpg" class="edge t1">
   <img src="img/akihime.jpg" class="edge t2">
   <img src="img/akihimeno.jpg" class="edge t3">
@@ -168,7 +213,7 @@
 
   <div class="card">
     <div id="intro">
-          💗💗İYİKİ DOĞDUN CANIM BENİM‎ 💗💗‎ ‎ ‎ 💗💗SENİ ÇOK SEEVİYORUM 💗💗
+      💗💗İYİKİ DOĞDUN CANIM BENİM‎ 💗💗‎ ‎ ‎ 💗💗SENİ ÇOK SEEVİYORUM 💗💗
     </div>
 
     <div id="msg">
@@ -188,6 +233,7 @@
       intro.style.display="none";
       msg.style.display="block";
 
+      /* BALONLAR */
       for(let i=0;i<90;i++){
         const b=document.createElement('div');
         b.className='balloon';
@@ -201,6 +247,7 @@
         document.body.appendChild(b);
       }
 
+      /* KONFETİ */
       for(let i=0;i<600;i++){
         const c=document.createElement('div');
         c.className='confetti';
@@ -212,19 +259,7 @@
         document.body.appendChild(c);
       }
     }
-
-    function spawnBears(){
-      const count=13;
-      for(let i=0;i<count;i++){
-        const img=document.createElement('img');
-        img.src="img/yicik.png";
-        img.className="bear";
-        img.style.left=(i*7+8)+"%";
-        img.style.animationDelay=(Math.random()*6)+"s";
-        document.body.appendChild(img);
-      }
-    }
-    spawnBears();
   </script>
+
 </body>
 </html>
