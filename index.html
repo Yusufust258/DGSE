@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>🎂 Doğum Günü 🎉</title>
 
-  <!-- 💖 Great Vibes font bağlantısı -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
@@ -33,18 +32,16 @@
       background-blend-mode: overlay;
     }
 
-    /* === BEYAZ KART ARKASINDAN AKAN ŞERİT === */
-
+    /* === ŞERİT (AKAN GÖRSELLER) === */
     .strip{
       position:fixed;
       top:0;
-      width:60px;
+      width:90px; /* biraz genişletildi ki kartın ortasından net geçsin */
       height:100%;
       display:flex;
       flex-direction:column;
-      gap:8px;
-      animation:flow 10s linear infinite;
-      z-index:2;     /* kartın arkasında */
+      animation:flow 20s linear infinite;
+      z-index:2; /* kartın arkasında */
       opacity:0.9;
     }
 
@@ -53,23 +50,29 @@
       height:80px;
       object-fit:cover;
       border-radius:10px;
+      margin-bottom:25px; /* 🔥 boşluk artırıldı */
+    }
+
+    .strip-inner {
+      display:flex;
+      flex-direction:column;
     }
 
     @keyframes flow{
-      0%   { transform:translateY(-100%); }
-      100% { transform:translateY(100%); }
+      0%   { transform:translateY(0); }
+      100% { transform:translateY(-50%); }
     }
 
-    /* solda */
+    /* soldaki şerit artık kartın ORTASINDAN geçiyor */
     #strip-left {
-      left: calc(50% - var(--frame-w)/2 - 80px);
+      left:calc(50% - var(--frame-w)/2 + 30px);
     }
 
-    /* sağda */
+    /* sağdaki şerit de kartın ORTASINDAN geçiyor */
     #strip-right {
-      right: calc(50% - var(--frame-w)/2 - 80px);
+      right:calc(50% - var(--frame-w)/2 + 30px);
     }
-    
+
     /* === BEYAZ KART === */
     .card{
       width:var(--frame-w);
@@ -87,7 +90,6 @@
       align-items:center;
     }
 
-    /* 🎀 Font sadece intro için */
     #intro{
       font-family:"Great Vibes", cursive;
       font-size:20px;
@@ -121,7 +123,6 @@
     }
     .btn:hover{background:#ff4cb3;}
 
-    /* KENARLARDAKİ SABİTLER */
     img.edge{
       width:var(--image-size);
       height:var(--image-size);
@@ -148,7 +149,6 @@
     .l1{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 80px);}
     .l2{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 80px);}
 
-    /* BALON + KONFETİ */
     .balloon{
       position:fixed;
       bottom:-80px;
@@ -179,22 +179,38 @@
 
   <!-- SOLDAN AKAN ŞERİT -->
   <div id="strip-left" class="strip">
-    <img src="img/a1.jpg">
-    <img src="img/a2.jpg">
-    <img src="img/a3.jpg">
-    <img src="img/a4.jpg">
-    <img src="img/a5.jpg">
-    <img src="img/a6.jpg">
+    <div class="strip-inner">
+      <img src="img/a1.jpg">
+      <img src="img/a2.jpg">
+      <img src="img/a3.jpg">
+      <img src="img/a4.jpg">
+      <img src="img/a5.jpg">
+      <img src="img/a6.jpg">
+      <img src="img/a1.jpg">
+      <img src="img/a2.jpg">
+      <img src="img/a3.jpg">
+      <img src="img/a4.jpg">
+      <img src="img/a5.jpg">
+      <img src="img/a6.jpg">
+    </div>
   </div>
 
   <!-- SAĞDAN AKAN ŞERİT -->
   <div id="strip-right" class="strip">
-    <img src="img/b1.jpg">
-    <img src="img/b2.jpg">
-    <img src="img/b3.jpg">
-    <img src="img/b4.jpg">
-    <img src="img/b5.jpg">
-    <img src="img/b6.jpg">
+    <div class="strip-inner">
+      <img src="img/b1.jpg">
+      <img src="img/b2.jpg">
+      <img src="img/b3.jpg">
+      <img src="img/b4.jpg">
+      <img src="img/b5.jpg">
+      <img src="img/b6.jpg">
+      <img src="img/b1.jpg">
+      <img src="img/b2.jpg">
+      <img src="img/b3.jpg">
+      <img src="img/b4.jpg">
+      <img src="img/b5.jpg">
+      <img src="img/b6.jpg">
+    </div>
   </div>
 
   <!-- SABİT RESİMLER -->
@@ -233,7 +249,6 @@
       intro.style.display="none";
       msg.style.display="block";
 
-      /* BALONLAR */
       for(let i=0;i<90;i++){
         const b=document.createElement('div');
         b.className='balloon';
@@ -247,7 +262,6 @@
         document.body.appendChild(b);
       }
 
-      /* KONFETİ */
       for(let i=0;i<600;i++){
         const c=document.createElement('div');
         c.className='confetti';
