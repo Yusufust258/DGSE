@@ -32,6 +32,7 @@
       background-blend-mode: overlay;
     }
 
+    /* === ŞERİT (AKAN GÖRSELLER) === */
     .strip{
       position:fixed;
       bottom:0;
@@ -58,14 +59,18 @@
       margin-bottom:25px;
     }
 
+    /* 🔁 Akış yukarıdan aşağıya, kesintisiz */
     @keyframes flow{
-      0% { transform:translateY(0); }
-      100% { transform:translateY(-50%); }
+      0%   { transform:translateY(-50%); }
+      100% { transform:translateY(0); }
     }
-    
-    #strip-left { left:30px; }
-    #strip-right { right:30px; }
 
+    /* soldaki şerit: kutunun ORTASINDAN geçiyor */
+    #strip-left { left:calc(50% - var(--frame-w)/2 + 30px); }
+    /* sağdaki şerit: kutunun ORTASINDAN geçiyor */
+    #strip-right { right:calc(50% - var(--frame-w)/2 + 30px); }
+
+    /* === BEYAZ KART === */
     .card{
       width:var(--frame-w);
       height:var(--frame-h);
@@ -148,9 +153,7 @@
       z-index:2;
       animation:floatUp 10s linear infinite;
     }
-    @keyframes floatUp{
-      to{transform:translateY(-110vh);}
-    }
+    @keyframes floatUp{ to{transform:translateY(-110vh);} }
 
     .confetti{
       position:fixed;
@@ -161,14 +164,12 @@
       z-index:3;
       animation:confetti 5s linear infinite;
     }
-    @keyframes confetti{
-      0%{transform:translateY(0) rotate(0);}
-      100%{transform:translateY(100vh) rotate(360deg);}
-    }
+    @keyframes confetti{ 0%{transform:translateY(0) rotate(0);} 100%{transform:translateY(100vh) rotate(360deg);} }
   </style>
 </head>
 <body>
 
+  <!-- SOLDAN AKAN ŞERİT -->
   <div id="strip-left" class="strip">
     <div class="strip-inner">
       <img src="img/a1.jpg">
@@ -186,6 +187,7 @@
     </div>
   </div>
 
+  <!-- SAĞDAN AKAN ŞERİT -->
   <div id="strip-right" class="strip">
     <div class="strip-inner">
       <img src="img/b1.jpg">
@@ -202,7 +204,8 @@
       <img src="img/b6.jpg">
     </div>
   </div>
-  
+
+  <!-- SABİT RESİMLER -->
   <img src="img/akihim.jpg" class="edge t1">
   <img src="img/akihime.jpg" class="edge t2">
   <img src="img/akihimeno.jpg" class="edge t3">
@@ -223,9 +226,9 @@
 
     <div id="msg">
       SENİ COOOOOOOOOOOK SEVİYORUM VEE SANA COOOOOOOOOOOOOOKKK BAYILIYOM SENLEYKEN SUPER GUZEL EGLENIYOM SENLEYKEN COOOOOOK MUTLU OLUYOM<br><br>
-      SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN CANIM BEN<br><br>
+      SENLEYKEN BEN :DDDDDDDDDDDDDD SENLE DEĞİLKEN BEN ://////////// SEN SUPERSİN SUPER IYIKI VARSIN CANIM BENİM<br><br>
       HEP BÖYLE MUTLU GÜZEL EĞLENCELİ HARİKA GECSIN SEN YOKKEN ben niye geldim dünyaya yaa SEN GELDİĞİNDE İYİKİ GELMİŞİ DÜNYAYA OLEEEEEEEEY<br><br>
-      İYİKİ SENİNLE TANIŞMIM SENİ COOOOOOOOOOK AMA COOOOOOOOOOK SVYM ASKM IYIKI VARSN HEEP YANINDA OLCAM BERBAER MUTLU EĞLENCEECELİ SENELEREEEEEEEEEEEEEEEEEEEEEE💗💗💗💗
+      İYİKİ SENİNLE TANIŞMIM SENİ COOOOOOOOOOOK AMA COOOOOOOOOOK SVYM ASKM IYIKI VARSN HEEP YANINDA OLCAM BERBAER MUTLU EĞLENCEECELİ SENELEREEEEEEEEEEEEEEEEEEEEEE💗💗💗💗
     </div>
 
     <button class="btn" onclick="showMessage()">Bukadaroldu🎉</button>
