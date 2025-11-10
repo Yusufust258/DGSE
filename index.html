@@ -2,112 +2,108 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>🎂 Doğum Günü 🎉</title>
 
-  <!-- 💖 Great Vibes font bağlantısı -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --frame-w: 340px;
-      --frame-h: 400px; /* mesaj kutusunu büyüttüm */
-      --card-border-radius: 18px;
-      --image-size: 55px;
-      --gap: 25px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      overflow:hidden;
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg,#f3a4ff,#ffb6e6);
-      font-family:"Poppins",sans-serif;
-      position:relative;
-      background-image:
-        linear-gradient(90deg, rgba(238,160,255,0.3) 50%, transparent 50%),
-        linear-gradient(rgba(238,160,255,0.3) 50%, transparent 50%);
-      background-size: 35px 35px;
-      background-blend-mode: overlay;
+      --frame-h: 400px;
     }
 
-    .card{
-      width:var(--frame-w);
-      height:var(--frame-h);
-      background:#fff;
-      border-radius:var(--card-border-radius);
-      box-shadow:0 10px 25px rgba(0,0,0,0.18);
-      position:relative;
-      text-align:center;
-      z-index:5;
-      padding:20px 15px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg,#f3a4ff,#ffb6e6);
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+      position: relative;
     }
 
-    /* 🎀 Font sadece intro için */
-    #intro{
-      font-family:"Great Vibes", cursive;
-      font-size:20px;
-      color:#d6009a;
-      text-align:center;
-      line-height:1.5;
+    /* 🎞️ Arka planda kayan görsel şeritleri */
+    .strip {
+      position: absolute;
+      top: 0;
+      width: 120px;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      opacity: 0.8;
     }
 
-    #msg{
-      color:#333;
-      font-size:13px;
-      max-height:300px;
-      overflow-y:auto;
-      display:none;
-      padding:20px 15px 25px 15px;
-      box-sizing: border-box;
+    .strip img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+      animation: scrollUp 10s linear infinite;
+    }
+
+    .left-strip { left: 5%; }
+    .right-strip { right: 5%; }
+
+    @keyframes scrollUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+
+    /* 🎁 Kart */
+    .card {
+      width: var(--frame-w);
+      height: var(--frame-h);
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+      position: relative;
+      text-align: center;
+      z-index: 5;
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #intro {
+      font-family: "Great Vibes", cursive;
+      font-size: 22px;
+      color: #d6009a;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    #msg {
+      color: #333;
+      font-size: 13px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      padding: 20px 15px 25px 15px;
       margin-top: 15px;
       text-align: center;
-   }
-
-    .btn{
-      margin-top:15px;
-      background:#ff66cc;
-      color:#fff;
-      border:0;
-      padding:8px 15px;
-      border-radius:18px;
-      cursor:pointer;
-      font-size:13px;
-      font-weight:600;
-      transition:background .3s ease;
-    }
-    .btn:hover{background:#ff4cb3;}
-
-    img.edge{
-      width:var(--image-size);
-      height:var(--image-size);
-      border-radius:8px;
-      object-fit:cover;
-      box-shadow:0 4px 12px rgba(0,0,0,0.18);
-      position:absolute;
-      z-index:10;
-      transform:rotate(0deg);
     }
 
-    .t1{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
-    .t2{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
-    .t3{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
-    .t4{top:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
-    .b1{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 140px);}
-    .b2{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 75px);}
-    .b3{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% - 10px);}
-    .b4{bottom:calc(50% - var(--frame-h)/2 - var(--image-size) - var(--gap)); left:calc(50% + 55px);}
-    .r1{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 80px);}
-    .r2{right:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 80px);}
-    .l1{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); top:calc(50% - 80px);}
-    .l2{left:calc(50% - var(--frame-w)/2 - var(--image-size) - var(--gap)); bottom:calc(50% - 80px);}
+    .btn {
+      margin-top: 15px;
+      background: #ff66cc;
+      color: #fff;
+      border: 0;
+      padding: 8px 15px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background .3s ease;
+    }
+    .btn:hover { background: #ff4cb3; }
 
+    /* 🎈 Balon ve konfeti */
     .balloon{
       position:fixed;
       bottom:-80px;
@@ -132,43 +128,32 @@
       0%{transform:translateY(0) rotate(0);}
       100%{transform:translateY(100vh) rotate(360deg);}
     }
-
-    .bear{
-      position:absolute;
-      width:45px;
-      height:45px;
-      object-fit:contain;
-      transform:rotate(-15deg);
-      animation:bearMove 8s linear infinite;
-      z-index:3;
-      opacity:1;
-    }
-
-    @keyframes bearMove{
-      0%{transform:translateY(120vh) rotate(-15deg);}
-      100%{transform:translateY(-120vh) rotate(-15deg);}
-    }
   </style>
 </head>
 <body>
 
-  <!-- Görseller -->
-  <img src="img/akihim.jpg" class="edge t1">
-  <img src="img/akihime.jpg" class="edge t2">
-  <img src="img/akihimeno.jpg" class="edge t3">
-  <img src="img/hiaki.jpeg" class="edge t4">
-  <img src="img/akimeno.jpg" class="edge r1">
-  <img src="img/biziz.jpeg" class="edge r2">
-  <img src="img/bleb.jpg" class="edge b1">
-  <img src="img/hakime.jpg" class="edge b2">
-  <img src="img/himaki.jpg" class="edge b3">
-  <img src="img/spr.jpeg" class="edge b4">
-  <img src="img/biz.jpeg" class="edge l1">
-  <img src="img/himenoaki.jpg" class="edge l2">
+  <!-- 🎞️ Sol ve sağ şeritler -->
+  <div class="strip left-strip">
+    <img src="img/a1.jpg">
+    <img src="img/a2.jpg">
+    <img src="img/a3.jpg">
+    <img src="img/a4.jpg">
+    <img src="img/a5.jpg">
+  </div>
 
+  <div class="strip right-strip">
+    <img src="img/b1.jpg">
+    <img src="img/b2.jpg">
+    <img src="img/b3.jpg">
+    <img src="img/b4.jpg">
+    <img src="img/b5.jpg">
+  </div>
+
+  <!-- 🎁 Kart -->
   <div class="card">
     <div id="intro">
-          💗💗İYİKİ DOĞDUN CANIM BENİM‎ 💗💗‎ ‎ ‎ 💗💗SENİ ÇOK SEEVİYORUM 💗💗
+      💗💗İYİKİ DOĞDUN CANIM BENİM💗💗<br>
+      💗💗SENİ ÇOK SEVİYORUM💗💗
     </div>
 
     <div id="msg">
@@ -188,6 +173,7 @@
       intro.style.display="none";
       msg.style.display="block";
 
+      // 🎈 Balon efekti
       for(let i=0;i<90;i++){
         const b=document.createElement('div');
         b.className='balloon';
@@ -201,6 +187,7 @@
         document.body.appendChild(b);
       }
 
+      // 🎊 Konfeti efekti
       for(let i=0;i<600;i++){
         const c=document.createElement('div');
         c.className='confetti';
@@ -212,19 +199,6 @@
         document.body.appendChild(c);
       }
     }
-
-    function spawnBears(){
-      const count=13;
-      for(let i=0;i<count;i++){
-        const img=document.createElement('img');
-        img.src="img/yicik.png";
-        img.className="bear";
-        img.style.left=(i*7+8)+"%";
-        img.style.animationDelay=(Math.random()*6)+"s";
-        document.body.appendChild(img);
-      }
-    }
-    spawnBears();
   </script>
 </body>
 </html>
